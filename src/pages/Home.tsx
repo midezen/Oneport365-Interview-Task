@@ -4,8 +4,24 @@ import Calender from "../components/Calender";
 import sun from "../img/sun.png";
 import AddNewSlideIn from "../components/AddNewSlideIn";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import { useState } from "react";
+import AddNewModal from "../components/AddNewModal";
+
+const style = {
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  bgcolor: "background.paper",
+  boxShadow: 24,
+};
 
 const Home: React.FC = () => {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   return (
     <div id="home" className="relative">
       <div id="top" className="h-[79px] flex justify-between p-[40px]">
@@ -57,13 +73,26 @@ const Home: React.FC = () => {
           <AddNewSlideIn time="8:00PM" draft />
         </div>
 
-        <button className="flex items-center bg-[#FFFFFF] justify-center text-[11px] font-medium h-[36px] rounded-[10px]">
+        <button
+          onClick={handleOpen}
+          className="flex items-center bg-[#FFFFFF] justify-center text-[11px] font-medium h-[36px] rounded-[10px]"
+        >
           <AddOutlinedIcon
             style={{ width: "10px", height: "10px", color: "#1F2937" }}
           />
           Add new quote
         </button>
       </div>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style} style={{ width: "30%", borderRadius: "10px" }}>
+          <AddNewModal handleClose={handleClose} />
+        </Box>
+      </Modal>
     </div>
   );
 };
