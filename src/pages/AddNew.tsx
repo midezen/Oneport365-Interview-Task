@@ -1,6 +1,7 @@
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import CurrencyCard from "../components/CurrencyCard";
+import Section from "../components/Section";
 
 const AddNew: React.FC = () => {
   return (
@@ -36,12 +37,7 @@ const AddNew: React.FC = () => {
             id="container_bodySection"
             className="flex gap-[24px] items-center"
           >
-            <div
-              id="container_bodySectionLeft"
-              className="h-[335px] border border-[#F3F4F6] w-[75%]"
-            >
-              Section
-            </div>
+            <Section />
             <CurrencyCard />
           </div>
         </div>
