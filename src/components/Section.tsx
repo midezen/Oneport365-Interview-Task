@@ -2,8 +2,12 @@ import { useState } from "react";
 import TimePickerComponent from "./TimePickerComponent";
 import SectionTable from "./SectionTable";
 
-const Section: React.FC = () => {
-  const [addNewBasis, setAddNewBasis] = useState<boolean>(true);
+interface Props {
+  remove: boolean;
+  setAddNewSection: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Section = ({ remove, setAddNewSection }: Props) => {
   return (
     <div id="section" className="w-[75%]">
       <div
@@ -22,22 +26,8 @@ const Section: React.FC = () => {
           </span>
         </div>
       </div>
-      <div
-        id="label"
-        className="w-full h-[47px] flex items-center border border-[#E6E7EC]"
-      >
-        {!addNewBasis && (
-          <span className="h-[47px] p-[16px] border border-[#139C33] text-[#9CA3AF] w-[143px] text-[12px] font-normal flex items-center justify-center">
-            Enter Section Label
-          </span>
-        )}
-        {addNewBasis && (
-          <span className="w-[200px] h-[47px] p-[16px] font-normal text-[12px] text-[#374151] flex items-center">
-            ORIGIN HANDLING CHARGES
-          </span>
-        )}
-      </div>
-      <SectionTable addNewBasis={addNewBasis} setAddNewBasis={setAddNewBasis} />
+
+      <SectionTable remove={remove} setAddNewSection={setAddNewSection} />
     </div>
   );
 };

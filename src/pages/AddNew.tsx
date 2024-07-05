@@ -2,8 +2,11 @@ import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import CurrencyCard from "../components/CurrencyCard";
 import Section from "../components/Section";
+import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
+import { useState } from "react";
 
 const AddNew: React.FC = () => {
+  const [addNewSection, setAddNewSection] = useState<boolean>(false);
   return (
     <div id="container">
       <div
@@ -35,16 +38,35 @@ const AddNew: React.FC = () => {
         <div id="container_bodySections" className="w-full mt-[39px] ">
           <div
             id="container_bodySection"
-            className="flex gap-[24px] items-center"
+            className="flex gap-[24px] items-center mb-[30px]"
           >
             <Section />
             <CurrencyCard />
           </div>
+          {addNewSection && (
+            <div
+              id="container_bodySection"
+              className="flex gap-[24px] items-center"
+            >
+              <Section remove setAddNewSection={setAddNewSection} />
+              <CurrencyCard />
+            </div>
+          )}
         </div>
+        <hr className="w-[73.5%] mt-[43px] mb-[40px] " />
+        <button
+          onClick={() => setAddNewSection(true)}
+          className="bg-[#37B2481A] h-[44px] w-[73.5%] text-[14px] text-[#00861E] flex items-center gap-[8px] justify-center"
+        >
+          <AddCircleOutlinedIcon
+            style={{ color: "#00861E", fontSize: "14px" }}
+          />
+          Add new Section
+        </button>
         <hr className="w-[73.5%] mt-[43px] mb-[40px] " />
         <div
           id="container_bodySectionsBottom"
-          className="w-[75%] flex justify-between"
+          className="w-[75%] flex justify-between mb-[30px]"
         >
           <button className="py-[10px] px-[32px] border text-[14px] font-normal text-[#C70024] bg-[#E5E7EB] rounded-[4px]">
             Cancel
