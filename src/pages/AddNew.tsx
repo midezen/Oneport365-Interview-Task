@@ -4,6 +4,7 @@ import CurrencyCard from "../components/CurrencyCard";
 import Section from "../components/Section";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const AddNew: React.FC = () => {
   const [addNewSection, setAddNewSection] = useState<boolean>(false);
@@ -14,12 +15,14 @@ const AddNew: React.FC = () => {
         className="flex justify-between items-center h-[118px] bg-[#FAFAFA] px-[64px]"
       >
         <div id="container_topLeft" className="flex flex-col gap-[4px]">
-          <div
-            id="container_topLeftTop"
-            className="flex items-center font-normal text-[12px] text-[#6B7280] cursor-pointer"
-          >
-            <NavigateBeforeIcon className="text-[12px]" /> Back to quotes
-          </div>
+          <Link to="/">
+            <div
+              id="container_topLeftTop"
+              className="flex items-center font-normal text-[12px] text-[#6B7280] cursor-pointer"
+            >
+              <NavigateBeforeIcon className="text-[12px]" /> Back to quotes
+            </div>
+          </Link>
           <p className="text-[24px] text-[#1F2937]-500">
             "Quote Title Here"{" "}
             <span className="text-[#9CA3AF]">[2/5/2024]</span>

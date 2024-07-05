@@ -1,5 +1,5 @@
 const Preview: React.FC = () => {
-  return <div></div>;
+  return <div>Preview</div>;
 };
 
 export default Preview;
