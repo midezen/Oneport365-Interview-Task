@@ -1,8 +1,24 @@
 import SyncAltIcon from "@mui/icons-material/SyncAlt";
 import usaFlag from "../img/usaFlag.png";
 import nigerianFlag from "../img/NigerianFlag.png";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import EditCurrency from "./EditCurrency";
+import { useState } from "react";
 
-const CurrencyCard: React.FC = () => {
+const style = {
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  bgcolor: "background.paper",
+  boxShadow: 24,
+};
+
+const CurrencyCard = ({ nigeria }: any) => {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   return (
     <div
       id="container_bodySectionRight"
@@ -28,7 +44,7 @@ const CurrencyCard: React.FC = () => {
         <div className="flex items-center gap-[3px] mt-[10px]">
           <div className="rounded-[4px] border border-[#F3F4F6] py-[13px] px-[16px] w-[66px] h-[41px] flex items-center justify-center">
             <img
-              src={usaFlag}
+              src={nigeria ? nigerianFlag : usaFlag}
               alt="usaFlag"
               className="w-[24px] h-[15px] object-cover"
             />
@@ -54,9 +70,22 @@ const CurrencyCard: React.FC = () => {
           </div>
         </div>
       </div>
-      <button className="w-full mt-[30px] bg-[#F3F4F6] py-[10px] px-[14px] rounded-[4px] h-[40px] font-normal text-[14px] text-[#1F2937]">
+      <button
+        onClick={handleOpen}
+        className="w-full mt-[30px] bg-[#F3F4F6] py-[10px] px-[14px] rounded-[4px] h-[40px] font-normal text-[14px] text-[#1F2937]"
+      >
         Edit section currency
       </button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style} style={{ width: "30%", borderRadius: "10px" }}>
+          <EditCurrency handleClose={handleClose} />
+        </Box>
+      </Modal>
     </div>
   );
 };

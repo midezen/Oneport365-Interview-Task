@@ -49,7 +49,7 @@ const AddNew: React.FC = () => {
               className="flex gap-[24px] items-center"
             >
               <Section remove setAddNewSection={setAddNewSection} />
-              <CurrencyCard />
+              <CurrencyCard nigeria />
             </div>
           )}
         </div>
