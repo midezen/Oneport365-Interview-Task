@@ -1,5 +1,4 @@
-import { BasisModel } from "./Models";
-import { SectionModel } from "./Models";
+import { BasisModel, SectionModel } from "./models";
 
 export const BasisData: BasisModel[] = [
   {

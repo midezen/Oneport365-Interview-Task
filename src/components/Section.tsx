@@ -1,13 +1,6 @@
-import { useState } from "react";
-import TimePickerComponent from "./TimePickerComponent";
 import SectionTable from "./SectionTable";
 
-interface Props {
-  remove: boolean;
-  setAddNewSection: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const Section = ({ remove, setAddNewSection }: Props) => {
+const Section = ({ remove, setAddNewSection }: any) => {
   return (
     <div id="section" className="w-[75%]">
       <div
