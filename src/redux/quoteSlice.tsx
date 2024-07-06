@@ -3,13 +3,13 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import { Quote } from "../models";
 
 export interface QuoteState {
-  quote: Quote;
+  quoteData: Quote;
   loading: boolean;
   error: boolean;
 }
 
 const initialState: QuoteState = {
-  quote: {
+  quoteData: {
     quote_title: "",
     quote_date: "",
     sections: [],
@@ -19,7 +19,7 @@ const initialState: QuoteState = {
 };
 
 export const quoteSlice = createSlice({
-  name: "counter",
+  name: "quote",
   initialState,
   reducers: {
     getQuoteStart: (state: any) => {
