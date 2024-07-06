@@ -1,12 +1,21 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import createSagaMiddleware from "redux-saga";
 import quoteReducer from "./quoteSlice";
+import watchFetchQuote from "./saga";
 
-export const store = configureStore({
+const sagaMiddleware = createSagaMiddleware();
+
+const store = configureStore({
   reducer: {
     quote: quoteReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(sagaMiddleware),
 });
 
-export type RootState = ReturnType<typeof store.getState>;
+sagaMiddleware.run(watchFetchQuote);
 
+export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+
+export default store;

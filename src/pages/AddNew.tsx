@@ -3,11 +3,24 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import CurrencyCard from "../components/CurrencyCard";
 import Section from "../components/Section";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { getQuoteStart } from "../redux/quoteSlice";
+import { useAppDispatch, useAppSelector } from "../hooks";
 
 const AddNew: React.FC = () => {
   const [addNewSection, setAddNewSection] = useState<boolean>(false);
+
+  const dispatch = useAppDispatch();
+
+  const quote = useAppSelector((state) => state.quote.quoteData);
+
+  useEffect(() => {
+    dispatch(getQuoteStart());
+  }, [dispatch]);
+
+  console.log(quote);
+
   return (
     <div id="container">
       <div
@@ -32,9 +45,11 @@ const AddNew: React.FC = () => {
           <button className="py-[10px] px-[14px] rounded-[4px] bg-[#FFFFFF] border border-[#F3F4F6] text-[#6B7280] font-normal text-[14px]">
             Save as draft
           </button>
-          <button className="py-[10px] rounded-[4px] px-[14px] bg-[#37B24833] text-[#005C00] font-normal text-[14px]">
-            <VisibilityIcon /> Preview
-          </button>
+          <Link to="/preview">
+            <button className="py-[10px] rounded-[4px] px-[14px] bg-[#37B24833] text-[#005C00] font-normal text-[14px]">
+              <VisibilityIcon /> Preview
+            </button>
+          </Link>
         </div>
       </div>
       <div id="container_body" className="px-[64px] w-full ">
@@ -43,7 +58,7 @@ const AddNew: React.FC = () => {
             id="container_bodySection"
             className="flex gap-[24px] items-center mb-[30px]"
           >
-            <Section />
+            <Section data={quote} />
             <CurrencyCard />
           </div>
           {addNewSection && (
@@ -51,7 +66,11 @@ const AddNew: React.FC = () => {
               id="container_bodySection"
               className="flex gap-[24px] items-center"
             >
-              <Section remove setAddNewSection={setAddNewSection} />
+              <Section
+                remove
+                setAddNewSection={setAddNewSection}
+                data={quote}
+              />
               <CurrencyCard nigeria />
             </div>
           )}

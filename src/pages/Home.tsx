@@ -8,6 +8,7 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import { useState } from "react";
 import AddNewModal from "../components/AddNewModal";
+import { Link } from "react-router-dom";
 
 const style = {
   position: "absolute" as "absolute",
@@ -69,7 +70,10 @@ const Home: React.FC = () => {
           <AddNewSlideIn time="4.00PM" />
           <AddNewSlideIn time="4.00PM" />
           <AddNewSlideIn time="4.00PM" />
-          <AddNewSlideIn time="6.30PM" />
+          <Link to="/preview">
+            <AddNewSlideIn time="6.30PM" />
+          </Link>
+
           <AddNewSlideIn time="8:00PM" draft />
         </div>
 

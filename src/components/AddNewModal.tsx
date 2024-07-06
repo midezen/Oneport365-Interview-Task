@@ -44,7 +44,7 @@ const AddNewModal = ({ handleClose }: any) => {
           <div className="border cursor-pointer flex justify-between items-center border-[#E5E7EB] mx-[24px] h-[44px] px-[10px] mt-[10px]">
             <span className="text-[#1F2937] text-[14px]">09 : 00 AM</span>
             <KeyboardArrowDownIcon
-              style={{ color: "#6B7280", height: "14px", weight: "14px" }}
+              style={{ color: "#6B7280", height: "14px", width: "14px" }}
             />
           </div>
         </div>
@@ -55,7 +55,7 @@ const AddNewModal = ({ handleClose }: any) => {
           <div className="border cursor-pointer flex justify-between items-center border-[#E5E7EB] mx-[24px] h-[44px] px-[10px] mt-[10px]">
             <span className="text-[#1F2937] text-[14px]">09 : 00 AM</span>
             <KeyboardArrowDownIcon
-              style={{ color: "#6B7280", height: "14px", weight: "14px" }}
+              style={{ color: "#6B7280", height: "14px", width: "14px" }}
             />
           </div>
         </div>

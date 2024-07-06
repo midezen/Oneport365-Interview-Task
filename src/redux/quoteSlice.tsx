@@ -22,20 +22,21 @@ export const quoteSlice = createSlice({
   name: "quote",
   initialState,
   reducers: {
-    getQuoteStart: (state: any) => {
+    getQuoteStart: (state) => {
       state.loading = true;
     },
-    getQuoteSuccess: (state: any, action: PayloadAction<Quote>) => {
-      state.quote = action.payload;
+    getQuoteSuccess: (state, action: PayloadAction<Quote>) => {
+      state.quoteData = action.payload;
       state.loading = false;
     },
-    getQuoteFailed: (state: any) => {
+    getQuoteFailed: (state) => {
       state.error = true;
       state.loading = false;
     },
   },
 });
 
-export const { getQuoteStart, getQuoteSuccess } = quoteSlice.actions;
+export const { getQuoteStart, getQuoteSuccess, getQuoteFailed } =
+  quoteSlice.actions;
 
 export default quoteSlice.reducer;
