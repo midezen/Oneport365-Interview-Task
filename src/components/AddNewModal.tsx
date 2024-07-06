@@ -65,14 +65,17 @@ const AddNewModal = ({ handleClose }: any) => {
         id="buttonWrapper"
         className="h-[136px] w-full border-t mt-[20px] flex flex-col items-center justify-center"
       >
-        <button
-          onClick={handleClose}
+        <Link
+          to="/addNew"
           className="h-[44px] items-center rounded-[4px] w-[85%] bg-[#007003] text-[14px] font-medium flex justify-center text-[#FFFFFF]"
         >
-          <Link to="/addNew">
+          <button
+            onClick={handleClose}
+            className="h-[44px] items-center rounded-[4px] w-[85%] bg-[#007003] text-[14px] font-medium flex justify-center text-[#FFFFFF]"
+          >
             <span>Create New Quote</span>
-          </Link>
-        </button>
+          </button>
+        </Link>
 
         <button
           onClick={handleClose}
