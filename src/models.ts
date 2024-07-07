@@ -1,14 +1,21 @@
-// export interface BasisModel {
-//   id: number;
-//   basis: string;
-//   unit: number;
-//   rate: string;
-//   amount: string;
-// }
+export interface PreviewContextType {
+  setPreviewOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  handlePreviewOpen: () => void;
+  handlePreviewClose: () => void;
+  previewOpen: boolean;
+}
 
-// export interface SectionModel {
-//   id: number;
-// }
+export interface BasisModel {
+  id: number;
+  basis: string;
+  unit: number;
+  rate: string;
+  amount: string;
+}
+
+export interface SectionModel {
+  id: number;
+}
 
 interface Currency {
   currency: string;
@@ -36,4 +43,12 @@ export interface Quote {
   quote_title: string;
   quote_date: string; // Use `string` type for date in ISO format
   sections: Section[];
+}
+
+export interface TableData {
+  basis: string;
+  uom: string;
+  unit: string;
+  rate: string;
+  amount: string;
 }

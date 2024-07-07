@@ -3,23 +3,40 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import CurrencyCard from "../components/CurrencyCard";
 import Section from "../components/Section";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { getQuoteStart } from "../redux/quoteSlice";
-import { useAppDispatch, useAppSelector } from "../hooks";
+import { PreviewContextType } from "../models";
+import { PreviewContext } from "../context/previewModalContext";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import Preview from "../components/Preview";
+// import { getQuoteStart } from "../redux/quoteSlice";
+// import { useAppDispatch, useAppSelector } from "../hooks";
+
+const style = {
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  bgcolor: "background.paper",
+  boxShadow: 24,
+};
 
 const AddNew: React.FC = () => {
   const [addNewSection, setAddNewSection] = useState<boolean>(false);
 
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
-  const quote = useAppSelector((state) => state.quote.quoteData);
+  // const quote = useAppSelector((state) => state.quote.quoteData);
 
-  useEffect(() => {
-    dispatch(getQuoteStart());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getQuoteStart());
+  // }, [dispatch]);
 
-  console.log(quote);
+  // console.log(quote);
+
+  const { handlePreviewOpen, previewOpen, handlePreviewClose } =
+    useContext<PreviewContextType>(PreviewContext);
 
   return (
     <div id="container">
@@ -45,11 +62,13 @@ const AddNew: React.FC = () => {
           <button className="py-[10px] px-[14px] rounded-[4px] bg-[#FFFFFF] border border-[#F3F4F6] text-[#6B7280] font-normal text-[14px]">
             Save as draft
           </button>
-          <Link to="/preview">
-            <button className="py-[10px] rounded-[4px] px-[14px] bg-[#37B24833] text-[#005C00] font-normal text-[14px]">
-              <VisibilityIcon /> Preview
-            </button>
-          </Link>
+
+          <button
+            onClick={handlePreviewOpen}
+            className="py-[10px] rounded-[4px] px-[14px] bg-[#37B24833] text-[#005C00] font-normal text-[14px]"
+          >
+            <VisibilityIcon /> Preview
+          </button>
         </div>
       </div>
       <div id="container_body" className="px-[64px] w-full ">
@@ -58,7 +77,7 @@ const AddNew: React.FC = () => {
             id="container_bodySection"
             className="flex gap-[24px] items-center mb-[30px]"
           >
-            <Section data={quote} />
+            <Section />
             <CurrencyCard />
           </div>
           {addNewSection && (
@@ -66,11 +85,7 @@ const AddNew: React.FC = () => {
               id="container_bodySection"
               className="flex gap-[24px] items-center"
             >
-              <Section
-                remove
-                setAddNewSection={setAddNewSection}
-                data={quote}
-              />
+              <Section remove setAddNewSection={setAddNewSection} />
               <CurrencyCard nigeria />
             </div>
           )}
@@ -98,6 +113,24 @@ const AddNew: React.FC = () => {
           </button>
         </div>
       </div>
+      <Modal
+        open={previewOpen}
+        onClose={handlePreviewClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box
+          sx={style}
+          style={{
+            width: "80%",
+            height: "90%",
+            borderRadius: "10px",
+            overflowY: "scroll",
+          }}
+        >
+          <Preview />
+        </Box>
+      </Modal>
     </div>
   );
 };

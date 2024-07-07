@@ -8,7 +8,10 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import { useState } from "react";
 import AddNewModal from "../components/AddNewModal";
-import { Link } from "react-router-dom";
+import Preview from "../components/Preview";
+import { PreviewContext } from "../context/previewModalContext";
+import { PreviewContextType } from "../models";
+import { useContext } from "react";
 
 const style = {
   position: "absolute" as "absolute",
@@ -20,9 +23,13 @@ const style = {
 };
 
 const Home: React.FC = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const { handlePreviewOpen, previewOpen, handlePreviewClose } =
+    useContext<PreviewContextType>(PreviewContext);
+
   return (
     <div id="home" className="relative">
       <div id="top" className="h-[79px] flex justify-between p-[40px]">
@@ -67,14 +74,21 @@ const Home: React.FC = () => {
         </div>
 
         <div id="items" className="w-full flex flex-col gap-[20px]">
-          <AddNewSlideIn time="4.00PM" />
-          <AddNewSlideIn time="4.00PM" />
-          <AddNewSlideIn time="4.00PM" />
-          <Link to="/preview">
+          <div onClick={handlePreviewOpen}>
+            <AddNewSlideIn time="4.00PM" />
+          </div>
+          <div onClick={handlePreviewOpen}>
+            <AddNewSlideIn time="4.00PM" />
+          </div>
+          <div onClick={handlePreviewOpen}>
+            <AddNewSlideIn time="4.00PM" />
+          </div>
+          <div onClick={handlePreviewOpen}>
             <AddNewSlideIn time="6.30PM" />
-          </Link>
-
-          <AddNewSlideIn time="8:00PM" draft />
+          </div>
+          <div onClick={handlePreviewOpen}>
+            <AddNewSlideIn time="8:00PM" draft />
+          </div>
         </div>
 
         <button
@@ -95,6 +109,24 @@ const Home: React.FC = () => {
       >
         <Box sx={style} style={{ width: "30%", borderRadius: "10px" }}>
           <AddNewModal handleClose={handleClose} />
+        </Box>
+      </Modal>
+      <Modal
+        open={previewOpen}
+        onClose={handlePreviewClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box
+          sx={style}
+          style={{
+            width: "80%",
+            height: "90%",
+            borderRadius: "10px",
+            overflowY: "scroll",
+          }}
+        >
+          <Preview />
         </Box>
       </Modal>
     </div>
