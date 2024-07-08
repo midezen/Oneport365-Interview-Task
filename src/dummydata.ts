@@ -77,3 +77,69 @@ export const quoteBreakdownData: TableData[] = [
     amount: "$255.00",
   },
 ];
+
+export const destinationChargesData: TableData[] = [
+  {
+    basis: "Estimate duty",
+    uom: "Per Kilogram",
+    unit: "610.00",
+    rate: "₦3.00",
+    amount: "₦1,830.00",
+  },
+  {
+    basis: "Custom Clearance/Valuation",
+    uom: "Per Kilogram",
+    unit: "610.00",
+    rate: "₦3.00",
+    amount: "₦1,830.00",
+  },
+  {
+    basis: "Stamp Duty",
+    uom: "Per Consignment",
+    unit: "1.00",
+    rate: "₦55.00",
+    amount: "₦55.00",
+  },
+  {
+    basis: "Welfare",
+    uom: "Per Consignment",
+    unit: "1.00",
+    rate: "₦55.00",
+    amount: "₦55.00",
+  },
+  {
+    basis: "Handling Charges",
+    uom: "Per Consignment",
+    unit: "1.00",
+    rate: "₦175.00",
+    amount: "₦175.00",
+  },
+  {
+    basis: "FAAN",
+    uom: "Per Consignment",
+    unit: "1.00",
+    rate: "₦255.00",
+    amount: "₦255.00",
+  },
+  {
+    basis: "Airline charges",
+    uom: "Per Consignment",
+    unit: "1.00",
+    rate: "₦255.00",
+    amount: "₦255.00",
+  },
+  {
+    basis: "Transport to PH",
+    uom: "Per Consignment",
+    unit: "1.00",
+    rate: "₦255.00",
+    amount: "₦255.00",
+  },
+  {
+    basis: "SON",
+    uom: "Per Consignment",
+    unit: "1.00",
+    rate: "₦255.00",
+    amount: "₦255.00",
+  },
+];

@@ -41,7 +41,7 @@ interface Section {
 
 export interface Quote {
   quote_title: string;
-  quote_date: string; // Use `string` type for date in ISO format
+  quote_date: string;
   sections: Section[];
 }
 

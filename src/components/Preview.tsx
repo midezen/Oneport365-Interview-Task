@@ -5,6 +5,8 @@ import { PreviewContextType } from "../models";
 import { PreviewContext } from "../context/previewModalContext";
 import logo from "../img/logo.png";
 import DetailsTable from "./DetailsTable";
+import TableModel from "./TableModel";
+import { destinationChargesData, quoteBreakdownData } from "../dummydata";
 
 const Preview = () => {
   const { handlePreviewClose } = useContext<PreviewContextType>(PreviewContext);
@@ -100,7 +102,7 @@ const Preview = () => {
             </div>
           </div>
 
-          <div id="QuoteBreakdown" className="h-[571px] mt-[32px]">
+          <div id="QuoteBreakdown" className="mt-[32px]">
             <div className="flex flex-col gap-[8px]">
               <span className="text-[14px] text-[#9CA3AF]">
                 Quote Breakdown
@@ -109,6 +111,19 @@ const Preview = () => {
                 ORIGIN HANDLING CHARGES
               </span>
             </div>
+            <TableModel data={quoteBreakdownData} />
+          </div>
+
+          <div id="destinationCharges" className="mt-[32px]">
+            <div className="flex flex-col gap-[8px]">
+              <span className="text-[14px] text-[#9CA3AF]">
+                Quote Breakdown
+              </span>
+              <span className="text-[20px] font-medium text-[#4B5563]">
+                ORIGIN HANDLING CHARGES
+              </span>
+            </div>
+            <TableModel data={destinationChargesData} />
           </div>
         </div>
       </div>
