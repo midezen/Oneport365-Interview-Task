@@ -1,3 +1,4 @@
+import { destinationChargesData, quoteBreakdownData } from "../dummydata";
 import { TableData } from "../models";
 
 interface Prop {
@@ -49,6 +50,36 @@ const TableModel = ({ data }: Prop) => {
               </tr>
             );
           })}
+          {data === quoteBreakdownData && (
+            <tr className="w-full h-[48px] flex items-center text-[14px] text-[#1F2937] justify-end">
+              <td className="text-[#9AA1B1] text-[16px] w-[360px] border-r flex justify-end pr-[15px]">
+                Sub Total:
+              </td>
+              <td className="w-[180px] text-[14px] border-r pr-[15px] flex justify-end">
+                $2,472.00
+              </td>
+            </tr>
+          )}
+          {data === destinationChargesData && (
+            <>
+              <tr className="w-full h-[48px] flex items-center text-[14px] text-[#1F2937] justify-end">
+                <td className="text-[#9AA1B1] text-[16px] w-[360px] border-r flex justify-end pr-[15px]">
+                  Total LOS airport to Client Door
+                </td>
+                <td className="w-[180px] text-[14px] border-r pr-[15px] flex justify-end">
+                  ₦877,150.00
+                </td>
+              </tr>
+              <tr className="w-full h-[48px] flex items-center text-[14px] text-[#1F2937] justify-end">
+                <td className="text-[#9AA1B1] text-[16px] w-[360px] border-r flex justify-end pr-[15px]">
+                  ALL-IN Door to Door (NGN)
+                </td>
+                <td className="w-[180px] text-[14px] border-r pr-[15px] flex justify-end">
+                  ₦4,090,750.00
+                </td>
+              </tr>
+            </>
+          )}
         </tbody>
       </table>
     </div>
