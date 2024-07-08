@@ -26,6 +26,7 @@ const Home: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [toggle, setToggle] = useState<boolean>(false);
 
   const { handlePreviewOpen, previewOpen, handlePreviewClose } =
     useContext<PreviewContextType>(PreviewContext);
@@ -55,7 +56,9 @@ const Home: React.FC = () => {
         </div>
       </div>
 
-      <Calender />
+      <div onClick={() => setToggle(!toggle)}>
+        <Calender />
+      </div>
 
       <div
         id="addContainer"

@@ -12,11 +12,15 @@ import {
   termsData,
 } from "../dummydata";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import downloadPdf from "../downloadFuction";
 
 const Preview = () => {
   const { handlePreviewClose } = useContext<PreviewContextType>(PreviewContext);
+  const handleDownload = () => {
+    downloadPdf("preview", "preview.pdf");
+  };
   return (
-    <div id="container" className="flex flex-col">
+    <div id="preview" className="flex flex-col">
       <div
         id="previewTop"
         className="h-[76px] bg-[#E9E9E933] w-full flex justify-between items-center"
@@ -36,10 +40,16 @@ const Preview = () => {
           id="icons"
           className="mr-[48px] flex items-center gap-[12px] mt-[18px]"
         >
-          <span className="cursor-pointer rounded-[24px] text-[12px] px-[16px] py-[8px] flex items-center justify-center bg-[#296FD8] font-medium text-[#FFFFFF]">
+          <span
+            onClick={handleDownload}
+            className="cursor-pointer rounded-[24px] text-[12px] px-[16px] py-[8px] flex items-center justify-center bg-[#296FD8] font-medium text-[#FFFFFF]"
+          >
             Save Quote
           </span>
-          <div className="cursor-pointer w-[38px] h-[36px] border-[1.5px] rounded-[8px] border-[#296FD8] px-[9px] py-[8px] flex items-center justify-center">
+          <div
+            onClick={handleDownload}
+            className="cursor-pointer w-[38px] h-[36px] border-[1.5px] rounded-[8px] border-[#296FD8] px-[9px] py-[8px] flex items-center justify-center"
+          >
             <FileDownloadOutlinedIcon
               style={{ height: "20px", width: "20px", color: "#296FD8" }}
             />
