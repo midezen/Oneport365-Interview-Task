@@ -143,3 +143,54 @@ export const destinationChargesData: TableData[] = [
     amount: "₦255.00",
   },
 ];
+
+export const termsData = [
+  {
+    id: "1.",
+    desc: "Above rates are for cargo details as provided by you.",
+  },
+  {
+    id: "2.",
+    desc: "Above quote is/are subject to VAT.",
+  },
+  {
+    id: "3.",
+    desc: "Above quoted reates are on Door-to-Door basis excludes of Duties at the time of exports.",
+  },
+  {
+    id: "4.",
+    desc: "Standard Trading Terms and Conditions of Oneport365 applies.",
+  },
+  {
+    id: "5.",
+    desc: "Above rates excludes services like packing, re-packing, Customs inspeciton etc which may be charged additional(if required) with prior customer approval.",
+  },
+  {
+    id: "6.",
+    desc: "Above rates do not cover insurance charges.",
+  },
+  {
+    id: "7.",
+    desc: "Above rates does not include any additional services required e.g - special handling, week-end pick-up/delivery which has not been agreed and same will be charged as mutually agreed before services are rendered.",
+  },
+  {
+    id: "8.",
+    desc: "Above rates apply for weight/volume (whichever is higher). Rates are based on ratio 1:6.",
+  },
+  {
+    id: "9.",
+    desc: "Quoted rates are valid for a period of one month and will need prior approval from Oneport365 incase any further extension is required.",
+  },
+  {
+    id: "10.",
+    desc: "Charges are based on shipment details provided by you: if quantity/weight will vary, our quotation will change accordingly.",
+  },
+  {
+    id: "11.",
+    desc: "Pricing team has the right to re-price if the actual cargo details defer from the information indicatedd in enquiry.",
+  },
+  {
+    id: "12.",
+    desc: "Unless otherwise specified, and haulage included withing the quote is based upon standard roadside only and between business hours Monday to Friday.",
+  },
+];

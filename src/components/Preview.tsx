@@ -6,7 +6,12 @@ import { PreviewContext } from "../context/previewModalContext";
 import logo from "../img/logo.png";
 import DetailsTable from "./DetailsTable";
 import TableModel from "./TableModel";
-import { destinationChargesData, quoteBreakdownData } from "../dummydata";
+import {
+  destinationChargesData,
+  quoteBreakdownData,
+  termsData,
+} from "../dummydata";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 const Preview = () => {
   const { handlePreviewClose } = useContext<PreviewContextType>(PreviewContext);
@@ -51,7 +56,7 @@ const Preview = () => {
       </div>
 
       {/* PREVIEW BOTTOM */}
-      <div className="w-full mt-[20px] ">
+      <div className="w-full mt-[20px] mb-[20px] ">
         <div
           id="previewBottom"
           className="flex flex-col py-[20px] px-[32px] rounded-[12px] border border-[#E5E7EB] w-[90%] m-auto"
@@ -68,6 +73,8 @@ const Preview = () => {
               <span>100223</span>
             </div>
           </div>
+
+          {/* PREVIEW BOTTOM CUSTOMER DETAILS */}
 
           <div
             id="details"
@@ -102,6 +109,7 @@ const Preview = () => {
             </div>
           </div>
 
+          {/* PREVIEW BOTTOM QUOTE BREAKDOWN TABLE */}
           <div id="QuoteBreakdown" className="mt-[32px]">
             <div className="flex flex-col gap-[8px]">
               <span className="text-[14px] text-[#9CA3AF]">
@@ -114,16 +122,63 @@ const Preview = () => {
             <TableModel data={quoteBreakdownData} />
           </div>
 
+          {/* PREVIEW BOTTOM DESTINATION CHARGES TABLE */}
           <div id="destinationCharges" className="mt-[32px]">
-            <div className="flex flex-col gap-[8px]">
-              <span className="text-[14px] text-[#9CA3AF]">
-                Quote Breakdown
-              </span>
-              <span className="text-[20px] font-medium text-[#4B5563]">
-                ORIGIN HANDLING CHARGES
-              </span>
-            </div>
+            <span className="text-[20px] font-medium text-[#4B5563]">
+              DESTINATION HANDLING CHARGES
+            </span>
             <TableModel data={destinationChargesData} />
+          </div>
+
+          {/* PREVIEW BOTTOM NOTE */}
+          <div
+            id="note"
+            className="flex gap-[10px] mt-[32px] bg-[#1b5c2b] px-[20px] py-[10px] rounded-[8px] w-full"
+          >
+            <InfoOutlinedIcon
+              style={{ color: "#FFFFFF", width: "20px", height: "20px" }}
+            />
+            <p className="text-[#FFFFFF] text-[14px]">
+              Please note this offer is firm for acceptance within 48hours,
+              otherwise above offer will be considered as invalid. Rates advised
+              is subject to prevailing parallel market rate at time of invoice.
+              Freight advised is subject to chargeable weight as declared by
+              airline. Above tariff is not applicable to non-complaint shipments
+              without Form Ms. PAARs.
+              <br />
+              <br />
+              NOTE: duty and tax not inclusive in the reates advised. They will
+              be advised when you provide the CIF value and H.S code <br />
+              We do trust that this offer meets your requirements. Please,
+              contact us if any further explanation is required.
+            </p>
+          </div>
+
+          {/* PREVIEW BOTTOM ONEPORT365 TERMS AND CONDITIONS */}
+          <div id="termsAndConditions" className="mt-[32px]">
+            <span className="text-[20px] font-medium text-[#4B5563]">
+              ONEPORT365 TERMS AND CONDITIONS
+            </span>
+            <div
+              id="list"
+              className="flex flex-col border rounded-[10px] w-full mt-[20px]"
+            >
+              {termsData.map((data) => {
+                return (
+                  <div
+                    id="listItem"
+                    className="text-[14px] w-full flex py-[10px] items-center"
+                  >
+                    <span className="border-r w-[7%] flex justify-center">
+                      {data.id}
+                    </span>
+                    <span className="flex-1 w-[93%] pl-[15px]">
+                      {data.desc}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
