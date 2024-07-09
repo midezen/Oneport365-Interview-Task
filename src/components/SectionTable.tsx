@@ -1,8 +1,9 @@
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
-import { useEffect, useState } from "react";
-import { SectionModel } from "../models";
+import { useContext, useEffect, useState } from "react";
+import { quoteToggleContextType, SectionModel } from "../models";
+import { QuoteToggleContext } from "../context/quoteToggleContext";
 
 interface Props {
   data: SectionModel;
@@ -10,7 +11,9 @@ interface Props {
 }
 
 const SectionTable = ({ data, setAddNewSection }: Props) => {
-  const [addNewBasis, setAddNewBasis] = useState<boolean>(false);
+  const { addNewBasis, setAddNewBasis } =
+    useContext<quoteToggleContextType>(QuoteToggleContext);
+
   const [remove, setRemove] = useState<boolean>(false);
 
   useEffect(() => {

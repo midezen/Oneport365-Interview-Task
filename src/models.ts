@@ -5,6 +5,13 @@ export interface PreviewContextType {
   previewOpen: boolean;
 }
 
+export interface quoteToggleContextType {
+  addNewBasis: boolean;
+  setAddNewBasis: React.Dispatch<React.SetStateAction<boolean>>;
+  addNewSection: boolean;
+  setAddNewSection: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
 export interface CurrencyInfo {
   currency: string;
   exchange_rate: number;
