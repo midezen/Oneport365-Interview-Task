@@ -1,4 +1,4 @@
-import { Quote, SectionModel } from "../models";
+import { SectionModel } from "../models";
 import SectionTable from "./SectionTable";
 
 interface Props {
@@ -26,7 +26,11 @@ const Section = ({ data, setAddNewSection }: Props) => {
         </div>
       </div>
 
-      <SectionTable data={data} setAddNewSection={setAddNewSection} />
+      <SectionTable
+        data={data}
+        setAddNewSection={setAddNewSection}
+        remove={data.section_number > 1 ? true : false}
+      />
     </div>
   );
 };

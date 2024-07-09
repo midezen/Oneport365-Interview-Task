@@ -7,16 +7,12 @@ import { SectionModel } from "../models";
 interface Props {
   data: SectionModel;
   setAddNewSection: React.Dispatch<React.SetStateAction<boolean>>;
+  remove: boolean;
 }
 
-const SectionTable = ({ data, setAddNewSection }: Props) => {
+const SectionTable = ({ data, setAddNewSection, remove }: Props) => {
   const [addNewBasis, setAddNewBasis] = useState<boolean>(false);
 
-  const [remove, setRemove] = useState<boolean>(false);
-
-  useEffect(() => {
-    data._id === "6670bed61cb82506c20df654" && setRemove(true);
-  }, []);
   return (
     <div className="flex flex-col">
       <div
