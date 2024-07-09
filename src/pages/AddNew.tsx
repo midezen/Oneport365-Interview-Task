@@ -124,7 +124,10 @@ const AddNew: React.FC = () => {
           <button className="py-[10px] px-[32px] border text-[14px] font-normal text-[#C70024] bg-[#E5E7EB] rounded-[4px]">
             Cancel
           </button>
-          <button className=" mr-[20px] py-[10px] px-[32px] bg-[#42a059] rounded-[4px] text-[14px] font-normal text-[#FFFFFF]">
+          <button
+            onClick={handlePreviewOpen}
+            className=" mr-[20px] py-[10px] px-[32px] bg-[#42a059] rounded-[4px] text-[14px] font-normal text-[#FFFFFF]"
+          >
             Save Quote
           </button>
         </div>

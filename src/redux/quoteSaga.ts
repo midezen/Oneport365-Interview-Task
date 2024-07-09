@@ -1,5 +1,5 @@
 import { call, takeLatest, put } from "redux-saga/effects";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 import {
   createQuoteFailed,
@@ -14,7 +14,7 @@ import {
 } from "./quoteSlice";
 import { PayloadAction } from "@reduxjs/toolkit";
 
-function* getSingleQuote() {
+function* getSingleQuote(): Generator<any, void, AxiosResponse<any>> {
   try {
     const response = yield call(
       axios.get,
@@ -27,7 +27,7 @@ function* getSingleQuote() {
   }
 }
 
-function* getAllQuotes() {
+function* getAllQuotes(): Generator<any, void, AxiosResponse<any>> {
   try {
     const response = yield call(
       axios.get,
@@ -41,7 +41,9 @@ function* getAllQuotes() {
   }
 }
 
-function* createQuote(action: PayloadAction<string>) {
+function* createQuote(
+  action: PayloadAction<string>
+): Generator<any, void, AxiosResponse<any>> {
   try {
     const response = yield call(
       axios.post,

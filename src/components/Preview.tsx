@@ -13,6 +13,7 @@ import {
 } from "../dummydata";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import downloadPdf from "../downloadFuction";
+import { Link } from "react-router-dom";
 
 const Preview = () => {
   const { handlePreviewClose } = useContext<PreviewContextType>(PreviewContext);
@@ -40,12 +41,11 @@ const Preview = () => {
           id="icons"
           className="mr-[48px] flex items-center gap-[12px] mt-[18px]"
         >
-          <span
-            onClick={handleDownload}
-            className="cursor-pointer rounded-[24px] text-[12px] px-[16px] py-[8px] flex items-center justify-center bg-[#296FD8] font-medium text-[#FFFFFF]"
-          >
-            Save Quote
-          </span>
+          <Link to="/" onClick={handlePreviewClose}>
+            <span className="cursor-pointer rounded-[24px] text-[12px] px-[16px] py-[8px] flex items-center justify-center bg-[#296FD8] font-medium text-[#FFFFFF]">
+              Save Quote
+            </span>
+          </Link>
           <div
             onClick={handleDownload}
             className="cursor-pointer w-[38px] h-[36px] border-[1.5px] rounded-[8px] border-[#296FD8] px-[9px] py-[8px] flex items-center justify-center"

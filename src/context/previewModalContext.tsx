@@ -1,7 +1,14 @@
 import { createContext, useState } from "react";
 import { PreviewContextType } from "../models";
 
-export const PreviewContext = createContext<PreviewContextType>();
+const defaultValue: PreviewContextType = {
+  setPreviewOpen: () => {},
+  handlePreviewOpen: () => {},
+  handlePreviewClose: () => {},
+  previewOpen: false,
+};
+
+export const PreviewContext = createContext<PreviewContextType>(defaultValue);
 
 const PreviewContextProvider = ({ children }: any) => {
   const [previewOpen, setPreviewOpen] = useState<boolean>(false);
