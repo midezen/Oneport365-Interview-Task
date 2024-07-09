@@ -36,10 +36,6 @@ const Home: React.FC = () => {
 
   const dispatch = useAppDispatch();
 
-  // const quoteState: QuoteState = useAppSelector(
-  //   (state: RootState) => state.quote
-  // );
-
   const displaySingle = () => {
     dispatch(getSingleQuoteStart());
   };
@@ -102,7 +98,7 @@ const Home: React.FC = () => {
           <div onClick={handlePreviewOpen}>
             <AddNewSlideIn time="6.30PM" />
           </div>
-          <Link to="/addNew" onClick={displaySingle}>
+          <Link to="/addNew" onClick={displaySingle} state={true}>
             <div>
               <AddNewSlideIn time="8:00PM" draft />
             </div>

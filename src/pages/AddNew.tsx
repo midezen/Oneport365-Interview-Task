@@ -3,9 +3,9 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import CurrencyCard from "../components/CurrencyCard";
 import Section from "../components/Section";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
-import { useContext } from "react";
-import { Link } from "react-router-dom";
-import { PreviewContextType, quoteToggleContextType } from "../models";
+import { useContext, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { PreviewContextType } from "../models";
 import { PreviewContext } from "../context/previewModalContext";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
@@ -13,7 +13,6 @@ import Preview from "../components/Preview";
 import { RootState } from "../redux/store";
 import { QuoteState } from "../redux/quoteSlice";
 import { useAppSelector } from "../hooks";
-import { QuoteToggleContext } from "../context/quoteToggleContext";
 
 const style = {
   position: "absolute" as "absolute",
@@ -25,8 +24,11 @@ const style = {
 };
 
 const AddNew: React.FC = () => {
-  const { addNewSection, setAddNewSection } =
-    useContext<quoteToggleContextType>(QuoteToggleContext);
+  const location = useLocation();
+
+  const [addNewSection, setAddNewSection] = useState<boolean>(
+    location.state ? location.state : false
+  );
 
   const { handlePreviewOpen, previewOpen, handlePreviewClose } =
     useContext<PreviewContextType>(PreviewContext);
