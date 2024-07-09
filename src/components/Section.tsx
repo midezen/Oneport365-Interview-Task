@@ -1,12 +1,13 @@
-import { SectionModel } from "../models";
+import { Quote, SectionModel } from "../models";
 import SectionTable from "./SectionTable";
 
 interface Props {
   data: SectionModel;
   setAddNewSection: React.Dispatch<React.SetStateAction<boolean>>;
+  quoteDetails: Quote;
 }
 
-const Section = ({ data, setAddNewSection }: Props) => {
+const Section = ({ data, setAddNewSection, quoteDetails }: Props) => {
   return (
     <div id="section" className="w-[75%]">
       <div
@@ -21,7 +22,7 @@ const Section = ({ data, setAddNewSection }: Props) => {
           className="rounded-[32px] py-[6px] px-[12px] border border-[#DBE3DC]"
         >
           <span className="text-[12px] text-[#007003] font-normal">
-            Sat 5th, May 2024
+            {quoteDetails.quote_date.toString()}
           </span>
         </div>
       </div>

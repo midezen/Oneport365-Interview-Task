@@ -3,6 +3,7 @@ import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import { useEffect, useState } from "react";
 import { SectionModel } from "../models";
+import { useLocation } from "react-router-dom";
 
 interface Props {
   data: SectionModel;
@@ -11,7 +12,11 @@ interface Props {
 }
 
 const SectionTable = ({ data, setAddNewSection, remove }: Props) => {
-  const [addNewBasis, setAddNewBasis] = useState<boolean>(false);
+  const location = useLocation();
+
+  const [addNewBasis, setAddNewBasis] = useState<boolean>(
+    location.state ? location.state : false
+  );
 
   return (
     <div className="flex flex-col">

@@ -6,15 +6,15 @@ import AddNewSlideIn from "../components/AddNewSlideIn";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddNewModal from "../components/AddNewModal";
 import Preview from "../components/Preview";
 import { PreviewContext } from "../context/previewModalContext";
 import { PreviewContextType } from "../models";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { useAppDispatch } from "../hooks";
-import { getSingleQuoteStart } from "../redux/quoteSlice";
+import { useAppDispatch, useAppSelector } from "../hooks";
+import { getAllQuoteStart, getSingleQuoteStart } from "../redux/quoteSlice";
 
 const style = {
   position: "absolute" as "absolute",
@@ -39,6 +39,10 @@ const Home: React.FC = () => {
   const displaySingle = () => {
     dispatch(getSingleQuoteStart());
   };
+
+  useEffect(() => {
+    dispatch(getAllQuoteStart());
+  }, [dispatch]);
 
   return (
     <div id="home" className="relative">

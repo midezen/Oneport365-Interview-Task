@@ -63,6 +63,17 @@ export const quoteSlice = createSlice({
       state.error = true;
       state.loading = false;
     },
+    editQuoteStart: (state) => {
+      state.loading = true;
+    },
+    editQuoteSuccess: (state, action: PayloadAction<Quote>) => {
+      state.singleQuoteData = action.payload;
+      state.loading = false;
+    },
+    editQuoteFailed: (state) => {
+      state.error = true;
+      state.loading = false;
+    },
   },
 });
 
@@ -76,6 +87,9 @@ export const {
   createQuoteFailed,
   createQuoteStart,
   createQuoteSuccess,
+  editQuoteFailed,
+  editQuoteStart,
+  editQuoteSuccess,
 } = quoteSlice.actions;
 
 export default quoteSlice.reducer;

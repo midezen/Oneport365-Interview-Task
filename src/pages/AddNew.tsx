@@ -13,6 +13,7 @@ import Preview from "../components/Preview";
 import { RootState } from "../redux/store";
 import { QuoteState } from "../redux/quoteSlice";
 import { useAppSelector } from "../hooks";
+import Tooltip from "@mui/material/Tooltip";
 
 const style = {
   position: "absolute" as "absolute",
@@ -89,6 +90,7 @@ const AddNew: React.FC = () => {
                     <Section
                       data={section}
                       setAddNewSection={setAddNewSection}
+                      quoteDetails={quoteState.singleQuoteData}
                     />
                     <CurrencyCard data={section.section_currency} />
                   </div>
@@ -104,6 +106,7 @@ const AddNew: React.FC = () => {
                     <Section
                       data={section}
                       setAddNewSection={setAddNewSection}
+                      quoteDetails={quoteState.singleQuoteData}
                     />
                     <CurrencyCard data={section.section_currency} />
                   </div>
@@ -125,9 +128,16 @@ const AddNew: React.FC = () => {
           id="container_bodySectionsBottom"
           className="w-[75%] flex justify-between mb-[30px]"
         >
-          <button className="py-[10px] px-[32px] border text-[14px] font-normal text-[#C70024] bg-[#E5E7EB] rounded-[4px]">
-            Cancel
-          </button>
+          <Tooltip
+            title="You will lose all the data inputted if you cancel"
+            placement="top"
+            arrow
+          >
+            <button className="py-[10px] px-[32px] border text-[14px] font-normal text-[#C70024] bg-[#E5E7EB] rounded-[4px]">
+              Cancel
+            </button>
+          </Tooltip>
+
           <button
             onClick={handlePreviewOpen}
             className=" mr-[20px] py-[10px] px-[32px] bg-[#42a059] rounded-[4px] text-[14px] font-normal text-[#FFFFFF]"

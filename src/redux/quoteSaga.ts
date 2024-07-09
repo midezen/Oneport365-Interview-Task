@@ -5,6 +5,9 @@ import {
   createQuoteFailed,
   createQuoteStart,
   createQuoteSuccess,
+  editQuoteFailed,
+  editQuoteStart,
+  editQuoteSuccess,
   getAllQuoteFailed,
   getAllQuoteStart,
   getAllQuoteSuccess,
@@ -53,7 +56,17 @@ function* createQuote(
     yield put(createQuoteSuccess(response.data.data));
     console.log(response.data.data);
   } catch (error: any) {
-    put(createQuoteFailed(error));
+    yield put(createQuoteFailed(error));
+    console.log(error);
+  }
+}
+
+function* editQuote(): Generator<any, void, AxiosResponse<any>> {
+  try {
+    const response = yield call(axios.put, "");
+    yield put(editQuoteSuccess(response.data.data));
+  } catch (error: any) {
+    yield put(editQuoteFailed(error));
     console.log(error);
   }
 }
@@ -62,4 +75,5 @@ export function* quoteSaga() {
   yield takeLatest(getSingleQuoteStart.type, getSingleQuote);
   yield takeLatest(getAllQuoteStart.type, getAllQuotes);
   yield takeLatest(createQuoteStart.type, createQuote);
+  yield takeLatest(editQuoteStart.type, editQuote);
 }
