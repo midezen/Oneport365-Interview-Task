@@ -1,8 +1,7 @@
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../hooks";
-
 import { createQuoteStart } from "../redux/quoteSlice";
 import { useEffect, useState } from "react";
 import { createData } from "../dummydata";

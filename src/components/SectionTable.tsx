@@ -1,7 +1,7 @@
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SectionModel } from "../models";
 import { useLocation } from "react-router-dom";
 

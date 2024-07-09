@@ -13,7 +13,7 @@ import { PreviewContext } from "../context/previewModalContext";
 import { PreviewContextType } from "../models";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../hooks";
+import { useAppDispatch } from "../hooks";
 import { getAllQuoteStart, getSingleQuoteStart } from "../redux/quoteSlice";
 
 const style = {
@@ -111,10 +111,10 @@ const Home: React.FC = () => {
 
         <button
           onClick={handleOpen}
-          className="flex items-center bg-[#FFFFFF] justify-center text-[11px] font-medium h-[36px] rounded-[10px]"
+          className="flex items-center bg-[#FFFFFF] justify-center text-[11px] font-medium h-[36px] rounded-[10px] gap-[2px]"
         >
           <AddOutlinedIcon
-            style={{ width: "10px", height: "10px", color: "#1F2937" }}
+            style={{ width: "20px", height: "20px", color: "#1F2937" }}
           />
           Add new quote
         </button>
