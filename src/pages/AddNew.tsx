@@ -3,15 +3,16 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import CurrencyCard from "../components/CurrencyCard";
 import Section from "../components/Section";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { PreviewContextType } from "../models";
 import { PreviewContext } from "../context/previewModalContext";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Preview from "../components/Preview";
-// import { getQuoteStart } from "../redux/quoteSlice";
-// import { useAppDispatch, useAppSelector } from "../hooks";
+import { RootState } from "../redux/store";
+import { QuoteState, getSingleQuoteStart } from "../redux/quoteSlice";
+import { useAppDispatch, useAppSelector } from "../hooks";
 
 const style = {
   position: "absolute" as "absolute",
@@ -25,21 +26,18 @@ const style = {
 const AddNew: React.FC = () => {
   const [addNewSection, setAddNewSection] = useState<boolean>(false);
 
-  // const dispatch = useAppDispatch();
-
-  // const quote = useAppSelector((state) => state.quote.quoteData);
-
-  // useEffect(() => {
-  //   dispatch(getQuoteStart());
-  // }, [dispatch]);
-
-  // console.log(quote);
-
   const { handlePreviewOpen, previewOpen, handlePreviewClose } =
     useContext<PreviewContextType>(PreviewContext);
 
+  const quoteState: QuoteState = useAppSelector(
+    (state: RootState) => state.quote
+  );
+
+  const slicedSections = quoteState.singleQuoteData.sections?.slice(0, 1);
+
   return (
     <div id="container">
+      {/* CONTAINER TOP */}
       <div
         id="container_top"
         className="flex justify-between items-center h-[118px] bg-[#FAFAFA] px-[64px]"
@@ -54,7 +52,7 @@ const AddNew: React.FC = () => {
             </div>
           </Link>
           <p className="text-[24px] text-[#1F2937]-500">
-            "Quote Title Here"{" "}
+            {quoteState.singleQuoteData?.quote_title}{" "}
             <span className="text-[#9CA3AF]">[2/5/2024]</span>
           </p>
         </div>
@@ -71,24 +69,42 @@ const AddNew: React.FC = () => {
           </button>
         </div>
       </div>
+
+      {/* CONTAINER BODY */}
       <div id="container_body" className="px-[64px] w-full ">
+        {/* SECTIONS */}
         <div id="container_bodySections" className="w-full mt-[39px] ">
-          <div
-            id="container_bodySection"
-            className="flex gap-[24px] items-center mb-[30px]"
-          >
-            <Section />
-            <CurrencyCard />
-          </div>
-          {addNewSection && (
-            <div
-              id="container_bodySection"
-              className="flex gap-[24px] items-center"
-            >
-              <Section remove setAddNewSection={setAddNewSection} />
-              <CurrencyCard nigeria />
-            </div>
-          )}
+          {addNewSection
+            ? quoteState.singleQuoteData.sections?.map((section) => {
+                return (
+                  <div
+                    id="container_bodySection"
+                    className="flex gap-[24px] items-center mb-[30px]"
+                    key={section._id}
+                  >
+                    <Section
+                      data={section}
+                      setAddNewSection={setAddNewSection}
+                    />
+                    <CurrencyCard data={section.section_currency} />
+                  </div>
+                );
+              })
+            : slicedSections?.map((section) => {
+                return (
+                  <div
+                    id="container_bodySection"
+                    className="flex gap-[24px] items-center mb-[30px]"
+                    key={section._id}
+                  >
+                    <Section
+                      data={section}
+                      setAddNewSection={setAddNewSection}
+                    />
+                    <CurrencyCard data={section.section_currency} />
+                  </div>
+                );
+              })}
         </div>
         <hr className="w-[73.5%] mt-[43px] mb-[40px] " />
         <button

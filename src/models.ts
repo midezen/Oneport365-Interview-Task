@@ -5,19 +5,7 @@ export interface PreviewContextType {
   previewOpen: boolean;
 }
 
-export interface BasisModel {
-  id: number;
-  basis: string;
-  unit: number;
-  rate: string;
-  amount: string;
-}
-
-export interface SectionModel {
-  id: number;
-}
-
-interface Currency {
+export interface CurrencyInfo {
   currency: string;
   exchange_rate: number;
   is_base_currency: boolean;
@@ -25,6 +13,7 @@ interface Currency {
 }
 
 interface SectionData {
+  _id?: string;
   basis: string;
   unit_of_measurement: string;
   unit: number;
@@ -32,17 +21,22 @@ interface SectionData {
   amount: number;
 }
 
-interface Section {
+export interface SectionModel {
+  section_currency: CurrencyInfo;
+  _id?: string;
   section_name: string;
   section_number: number;
-  section_currency: Currency;
   section_data: SectionData[];
 }
 
 export interface Quote {
-  quote_title: string;
+  _id?: string;
   quote_date: string;
-  sections: Section[];
+  sections: SectionModel[];
+  createdAt?: string;
+  updatedAt?: string;
+  __v?: number;
+  quote_title?: string;
 }
 
 export interface TableData {

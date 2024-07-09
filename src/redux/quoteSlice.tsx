@@ -3,13 +3,19 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import { Quote } from "../models";
 
 export interface QuoteState {
-  quoteData: Quote;
+  quoteData: Quote[];
+  singleQuoteData: Quote;
   loading: boolean;
   error: boolean;
 }
 
 const initialState: QuoteState = {
-  quoteData: {
+  quoteData: [],
+  singleQuoteData: {
+    _id: "",
+    updatedAt: "",
+    createdAt: "",
+    __v: 0,
     quote_title: "",
     quote_date: "",
     sections: [],
@@ -22,21 +28,54 @@ export const quoteSlice = createSlice({
   name: "quote",
   initialState,
   reducers: {
-    getQuoteStart: (state) => {
+    getSingleQuoteStart: (state) => {
       state.loading = true;
     },
-    getQuoteSuccess: (state, action: PayloadAction<Quote>) => {
+    getSingleQuoteSuccess: (state, action: PayloadAction<Quote>) => {
+      state.singleQuoteData = action.payload;
+      state.loading = false;
+    },
+    getSingleQuoteFailed: (state) => {
+      state.error = true;
+      state.loading = false;
+    },
+
+    getAllQuoteStart: (state) => {
+      state.loading = true;
+    },
+    getAllQuoteSuccess: (state, action: PayloadAction<Quote[]>) => {
       state.quoteData = action.payload;
       state.loading = false;
     },
-    getQuoteFailed: (state) => {
+    getAllQuoteFailed: (state) => {
+      state.error = true;
+      state.loading = false;
+    },
+
+    createQuoteStart: (state) => {
+      state.loading = true;
+    },
+    createQuoteSuccess: (state, action: PayloadAction<Quote>) => {
+      state.singleQuoteData = action.payload;
+      state.loading = false;
+    },
+    createQuoteFailed: (state) => {
       state.error = true;
       state.loading = false;
     },
   },
 });
 
-export const { getQuoteStart, getQuoteSuccess, getQuoteFailed } =
-  quoteSlice.actions;
+export const {
+  getSingleQuoteStart,
+  getSingleQuoteSuccess,
+  getSingleQuoteFailed,
+  getAllQuoteFailed,
+  getAllQuoteStart,
+  getAllQuoteSuccess,
+  createQuoteFailed,
+  createQuoteStart,
+  createQuoteSuccess,
+} = quoteSlice.actions;
 
 export default quoteSlice.reducer;

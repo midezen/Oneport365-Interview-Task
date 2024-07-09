@@ -1,37 +1,4 @@
-import { BasisModel, SectionModel, TableData } from "./models";
-
-export const BasisData: BasisModel[] = [
-  {
-    id: 1,
-    basis: "Exportation Charges",
-    unit: 12,
-    rate: "$205.00",
-    amount: "$410,028.00",
-  },
-  {
-    id: 2,
-    basis: "Exportation Charges",
-    unit: 12,
-    rate: "$205.00",
-    amount: "$410,028.00",
-  },
-  {
-    id: 3,
-    basis: "Exportation Charges",
-    unit: 12,
-    rate: "$205.00",
-    amount: "$410,028.00",
-  },
-];
-
-export const SectionData: SectionModel[] = [
-  {
-    id: 1,
-  },
-  {
-    id: 2,
-  },
-];
+import { Quote, TableData } from "./models";
 
 export const quoteBreakdownData: TableData[] = [
   {
@@ -194,3 +161,54 @@ export const termsData = [
     desc: "Unless otherwise specified, and haulage included withing the quote is based upon standard roadside only and between business hours Monday to Friday.",
   },
 ];
+
+export const createData: Quote = {
+  quote_date: "2024-06-18T00:00:00.000Z",
+  sections: [
+    {
+      section_name: "Section 1",
+      section_number: 1,
+      section_currency: {
+        currency: "NGN",
+        exchange_rate: 100.45,
+        is_base_currency: true,
+        customer_currency: "USD",
+      },
+      section_data: [
+        {
+          basis: "Basis 1",
+          unit_of_measurement: "Kilogram",
+          unit: 10,
+          rate: 5,
+          amount: 50,
+        },
+        {
+          basis: "Basis 2",
+          unit_of_measurement: "Meter",
+          unit: 20,
+          rate: 3,
+          amount: 60,
+        },
+      ],
+    },
+    {
+      section_name: "Section 2",
+      section_number: 2,
+      section_currency: {
+        currency: "NGN",
+        exchange_rate: 100.45,
+        is_base_currency: true,
+        customer_currency: "USD",
+      },
+      section_data: [
+        {
+          basis: "Basis 3",
+          unit_of_measurement: "Liter",
+          unit: 30,
+          rate: 2,
+          amount: 60,
+        },
+      ],
+    },
+  ],
+};

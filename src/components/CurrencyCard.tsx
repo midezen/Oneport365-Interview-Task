@@ -5,6 +5,11 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import EditCurrency from "./EditCurrency";
 import { useState } from "react";
+import { CurrencyInfo } from "../models";
+
+interface Prop {
+  data: CurrencyInfo;
+}
 
 const style = {
   position: "absolute" as "absolute",
@@ -15,7 +20,7 @@ const style = {
   boxShadow: 24,
 };
 
-const CurrencyCard = ({ nigeria }: any) => {
+const CurrencyCard = ({ data }: Prop) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -32,8 +37,12 @@ const CurrencyCard = ({ nigeria }: any) => {
           Selection Currency
         </span>
         <span className="text-[14px] font-normal text-[#1F2937] flex gap-[4px] items-center">
-          USD
-          <img src={usaFlag} alt="usaFlag" className="h-[17px] w-[23.33px]" />
+          {data.currency}
+          <img
+            src={data.currency === "NGN" ? nigerianFlag : usaFlag}
+            alt="usaFlag"
+            className="h-[17px] w-[23.33px]"
+          />
         </span>
       </div>
       <hr className="mt-[15px] mb-[15px]" />
@@ -44,7 +53,7 @@ const CurrencyCard = ({ nigeria }: any) => {
         <div className="flex items-center gap-[3px] mt-[10px]">
           <div className="rounded-[4px] border border-[#F3F4F6] py-[13px] px-[16px] w-[66px] h-[41px] flex items-center justify-center">
             <img
-              src={nigeria ? nigerianFlag : usaFlag}
+              src={data.currency === "NGN" ? nigerianFlag : usaFlag}
               alt="usaFlag"
               className="w-[24px] h-[15px] object-cover"
             />
@@ -60,12 +69,12 @@ const CurrencyCard = ({ nigeria }: any) => {
 
           <div className="rounded-[4px] border border-[#F3F4F6] py-[12px] px-[16px] w-[165px] h-[41px] flex items-center gap-[8px]">
             <img
-              src={nigerianFlag}
+              src={data.currency === "NGN" ? nigerianFlag : usaFlag}
               alt="nigerianFlag"
               className="w-[24px] h-[14.4px] object-cover"
             />
             <span className="font-normal text-[14px] text-[#34373F]">
-              ₦1,119.53
+              ₦{data.exchange_rate}
             </span>
           </div>
         </div>
@@ -83,7 +92,7 @@ const CurrencyCard = ({ nigeria }: any) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style} style={{ width: "30%", borderRadius: "10px" }}>
-          <EditCurrency handleClose={handleClose} />
+          <EditCurrency handleClose={handleClose} data={data} />
         </Box>
       </Modal>
     </div>

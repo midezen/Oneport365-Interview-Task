@@ -4,8 +4,14 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import nigerianFlag from "../img/NigerianFlag.png";
 import { useState } from "react";
+import { CurrencyInfo } from "../models";
 
-const EditCurrency = ({ handleClose }: any) => {
+interface Props {
+  data: CurrencyInfo;
+  handleClose: () => void;
+}
+
+const EditCurrency = ({ handleClose, data }: Props) => {
   const [input, setInput] = useState<string>("");
 
   return (
@@ -36,8 +42,14 @@ const EditCurrency = ({ handleClose }: any) => {
         </span>
         <div className="border cursor-pointer flex justify-between items-center border-[#E5E7EB] mx-[24px] h-[44px] px-[10px] mt-[10px]">
           <div className="flex gap-[8px] items-center">
-            <img src={usaFlag} alt="" className="w-[24px] h-[17px]" />
-            <span className="text-[14px] text-[#1F2937] font-normal">USD</span>
+            <img
+              src={data.currency === "NGN" ? nigerianFlag : usaFlag}
+              alt=""
+              className="w-[24px] h-[17px]"
+            />
+            <span className="text-[14px] text-[#1F2937] font-normal">
+              {data.currency}
+            </span>
           </div>
           <KeyboardArrowDownIcon
             style={{ width: "20px", height: "20px", color: "#4B5563" }}
@@ -97,8 +109,14 @@ const EditCurrency = ({ handleClose }: any) => {
         </span>
         <div className="border cursor-pointer flex justify-between items-center border-[#E5E7EB] mx-[24px] h-[44px] px-[10px] mt-[10px]">
           <div className="flex gap-[8px] items-center">
-            <img src={nigerianFlag} alt="" className="w-[24px] h-[17px]" />
-            <span className="text-[14px] text-[#1F2937] font-normal">NGN</span>
+            <img
+              src={data.customer_currency === "NGN" ? nigerianFlag : usaFlag}
+              alt=""
+              className="w-[24px] h-[17px]"
+            />
+            <span className="text-[14px] text-[#1F2937] font-normal">
+              {data.customer_currency}
+            </span>
           </div>
           <KeyboardArrowDownIcon
             style={{ width: "20px", height: "20px", color: "#4B5563" }}
@@ -115,9 +133,13 @@ const EditCurrency = ({ handleClose }: any) => {
         </span>
         <div className="border cursor-pointer flex justify-between items-center border-[#E5E7EB] mx-[24px] h-[44px] px-[10px] mt-[10px]">
           <div className="flex gap-[8px] items-center">
-            <img src={nigerianFlag} alt="" className="w-[24px] h-[17px]" />
+            <img
+              src={data.currency === "NGN" ? nigerianFlag : usaFlag}
+              alt=""
+              className="w-[24px] h-[17px]"
+            />
             <span className="text-[14px] text-[#1F2937] font-normal">
-              ₦1,119.53
+              ₦{data.exchange_rate}
             </span>
           </div>
         </div>

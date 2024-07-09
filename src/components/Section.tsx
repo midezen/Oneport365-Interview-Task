@@ -1,6 +1,12 @@
+import { Quote, SectionModel } from "../models";
 import SectionTable from "./SectionTable";
 
-const Section = ({ remove, setAddNewSection }: any) => {
+interface Props {
+  data: SectionModel;
+  setAddNewSection: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Section = ({ data, setAddNewSection }: Props) => {
   return (
     <div id="section" className="w-[75%]">
       <div
@@ -20,7 +26,7 @@ const Section = ({ remove, setAddNewSection }: any) => {
         </div>
       </div>
 
-      <SectionTable remove={remove} setAddNewSection={setAddNewSection} />
+      <SectionTable data={data} setAddNewSection={setAddNewSection} />
     </div>
   );
 };

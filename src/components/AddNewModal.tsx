@@ -1,8 +1,34 @@
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../hooks";
+
+import { createQuoteStart } from "../redux/quoteSlice";
+import { useEffect, useState } from "react";
+import { createData } from "../dummydata";
 
 const AddNewModal = ({ handleClose }: any) => {
+  const [input, setInput] = useState<string>("");
+  const [disabled, setDisabled] = useState<boolean>(true);
+
+  useEffect(() => {
+    input !== "" && setDisabled(false);
+    input === "" && setDisabled(true);
+  }, [input]);
+
+  const data: any = { ...createData, quote_title: input };
+
+  console.log(input);
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleCreateQuote = () => {
+    dispatch(createQuoteStart(data));
+    navigate("/addNew");
+    handleClose();
+  };
+
   return (
     <div id="wrapper">
       <div id="top" className="flex justify-between h-[79px] border-b ">
@@ -30,9 +56,15 @@ const AddNewModal = ({ handleClose }: any) => {
           Enter Quote Title
         </span>
         <div className="border cursor-pointer flex justify-between items-center border-[#E5E7EB] mx-[24px] h-[44px] px-[10px] mt-[10px]">
-          <span className="text-[#1F293780] text-[14px]">
-            Enter quote title here
-          </span>
+          <div className="text-[#1F293780] text-[14px] w-full">
+            <input
+              type="text"
+              placeholder="Enter quote title here"
+              className="w-full h-full bg-transparent outline-none text-[#000]"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+            />
+          </div>
         </div>
       </div>
 
@@ -65,17 +97,17 @@ const AddNewModal = ({ handleClose }: any) => {
         id="buttonWrapper"
         className="h-[136px] w-full border-t mt-[20px] flex flex-col items-center justify-center"
       >
-        <Link
-          to="/addNew"
+        <div
           className="h-[44px] items-center rounded-[4px] w-[85%] bg-[#007003] text-[14px] font-medium flex justify-center text-[#FFFFFF]"
+          onClick={handleCreateQuote}
         >
           <button
-            onClick={handleClose}
-            className="h-[44px] items-center rounded-[4px] w-[85%] bg-[#007003] text-[14px] font-medium flex justify-center text-[#FFFFFF]"
+            disabled={disabled}
+            className="disabled:cursor-not-allowed disabled:opacity-[0.5] h-[44px] items-center rounded-[4px] w-[85%] bg-[#007003] text-[14px] font-medium flex justify-center text-[#FFFFFF]"
           >
             <span>Create New Quote</span>
           </button>
-        </Link>
+        </div>
 
         <button
           onClick={handleClose}

@@ -1,16 +1,21 @@
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
-import { BasisData } from "../dummydata";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { SectionModel } from "../models";
 
 interface Props {
-  remove: boolean;
+  data: SectionModel;
   setAddNewSection: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const SectionTable = ({ remove, setAddNewSection }: Props) => {
+const SectionTable = ({ data, setAddNewSection }: Props) => {
   const [addNewBasis, setAddNewBasis] = useState<boolean>(false);
+  const [remove, setRemove] = useState<boolean>(false);
+
+  useEffect(() => {
+    data._id === "6670bed61cb82506c20df654" && setRemove(true);
+  }, []);
   return (
     <div className="flex flex-col">
       <div
@@ -24,7 +29,7 @@ const SectionTable = ({ remove, setAddNewSection }: Props) => {
         )}
         {addNewBasis && (
           <span className="w-[200px] h-[47px] p-[16px] font-normal text-[12px] text-[#374151] flex items-center">
-            ORIGIN HANDLING CHARGES
+            {data.section_name}
           </span>
         )}
         {remove && (
@@ -109,19 +114,19 @@ const SectionTable = ({ remove, setAddNewSection }: Props) => {
             </tr>
           </tbody>
         ) : (
-          BasisData.map((data) => {
+          data.section_data.map((sectionData) => {
             return (
               <tbody
                 className="h-[49px] text-[12px] text-[#6B7280] font-normal w-full"
-                key={data.id}
+                key={data._id}
               >
                 <tr className="flex w-full items-center border-b border-b-[#E6E7EC]">
                   <td className="w-[206px] h-[48px] flex items-center p-[16px] justify-between">
-                    <span className="">{data.basis}</span>
+                    <span className="">{sectionData.basis}</span>
                     <span className="h-[20px] w-[1px] bg-[#E6E7EC]"></span>
                   </td>
                   <td className="w-[134px] h-[48px] flex items-center p-[16px] justify-between text-[#6B7280]">
-                    Per Kilogram
+                    {sectionData.unit_of_measurement}
                     <div className="flex gap-[10px] items-center">
                       <KeyboardArrowDownIcon
                         style={{ fontSize: "12px", color: "#6B7280" }}
@@ -130,16 +135,16 @@ const SectionTable = ({ remove, setAddNewSection }: Props) => {
                     </div>
                   </td>
                   <td className="w-[96px] flex items-center p-[16px] justify-between">
-                    {data.unit}
+                    {sectionData.unit}
                     <span className="h-[20px] w-[1px] bg-[#E6E7EC]"></span>
                   </td>
                   <td className="w-[112px] h-[48px] flex items-center p-[16px] justify-between">
-                    {data.rate}
+                    {sectionData.rate}
                     <span className="h-[20px] w-[1px] bg-[#E6E7EC]"></span>
                   </td>
                   <td className="h-[48px] flex items-center p-[16px] gap-[30px] justify-between flex-1">
                     <span className="w-[28%] flex justify-center">
-                      {data.amount}
+                      {sectionData.amount}
                     </span>
                     <DeleteOutlineOutlinedIcon
                       style={{

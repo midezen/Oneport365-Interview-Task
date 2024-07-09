@@ -12,6 +12,9 @@ import Preview from "../components/Preview";
 import { PreviewContext } from "../context/previewModalContext";
 import { PreviewContextType } from "../models";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
+import { useAppDispatch } from "../hooks";
+import { getSingleQuoteStart } from "../redux/quoteSlice";
 
 const style = {
   position: "absolute" as "absolute",
@@ -30,6 +33,16 @@ const Home: React.FC = () => {
 
   const { handlePreviewOpen, previewOpen, handlePreviewClose } =
     useContext<PreviewContextType>(PreviewContext);
+
+  const dispatch = useAppDispatch();
+
+  // const quoteState: QuoteState = useAppSelector(
+  //   (state: RootState) => state.quote
+  // );
+
+  const displaySingle = () => {
+    dispatch(getSingleQuoteStart());
+  };
 
   return (
     <div id="home" className="relative">
@@ -89,9 +102,11 @@ const Home: React.FC = () => {
           <div onClick={handlePreviewOpen}>
             <AddNewSlideIn time="6.30PM" />
           </div>
-          <div onClick={handlePreviewOpen}>
-            <AddNewSlideIn time="8:00PM" draft />
-          </div>
+          <Link to="/addNew" onClick={displaySingle}>
+            <div>
+              <AddNewSlideIn time="8:00PM" draft />
+            </div>
+          </Link>
         </div>
 
         <button
