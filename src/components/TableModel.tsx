@@ -7,7 +7,7 @@ interface Prop {
 
 const TableModel = ({ data }: Prop) => {
   return (
-    <div className="mt-[20px] w-full">
+    <div className="mt-[20px] w-full overflow-x-auto">
       <table className="w-full">
         <thead className="w-full h-[48px] border-t ">
           <tr className="w-full flex h-[48px] border-b items-center">

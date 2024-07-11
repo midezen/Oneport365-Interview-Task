@@ -1,7 +1,9 @@
+import "../customCss.css";
+
 const DetailsTable: React.FC = () => {
   return (
-    <div className="w-full">
-      <table id="detailsTable1" className="mt-[40px] w-full">
+    <div className="w-full overflow-x-auto">
+      <table id="detailsTable1" className="mt-[40px] w-full ">
         <thead className="w-full">
           <tr className="w-full flex">
             <th className="font-normal text-[12px] text-[#9CA3AF] w-[203px] flex justify-items-start">
@@ -20,16 +22,16 @@ const DetailsTable: React.FC = () => {
         </thead>
         <tbody>
           <tr className="flex">
-            <td className="font-normal text-[16px] text-[#1F2937] w-[203px]">
+            <td className="font-normal text-[14px] sm:text-[16px] text-[#1F2937] w-[203px]">
               Daniel Alobode
             </td>
-            <td className="font-normal text-[16px] text-[#007003] w-[203px]">
+            <td className="font-normal text-[14px] sm:text-[16px] text-[#007003] w-[203px]">
               ample@mail.com
             </td>
-            <td className="font-normal text-[16px] text-[#1F2937] w-[203px]">
+            <td className="font-normal text-[14px] sm:text-[16px] text-[#1F2937] w-[203px]">
               Electric goods
             </td>
-            <td className="font-normal text-[16px] text-[#1F2937] w-[203px]">
+            <td className="font-normal text-[14px] sm:text-[16px] text-[#1F2937] w-[203px]">
               Export Air Frieght
             </td>
           </tr>
@@ -55,16 +57,16 @@ const DetailsTable: React.FC = () => {
         </thead>
         <tbody>
           <tr className="flex">
-            <td className="font-normal text-[16px] text-[#1F2937] w-[203px]">
+            <td className="font-normal text-[14px] sm:text-[16px] text-[#1F2937] w-[203px]">
               55.34KG
             </td>
-            <td className="font-normal text-[16px] text-[#1F2937] w-[203px]">
+            <td className="font-normal text-[14px] sm:text-[16px] text-[#1F2937] w-[203px]">
               Lagos City
             </td>
-            <td className="font-normal text-[16px] text-[#1F2937] w-[203px]">
+            <td className="font-normal text-[14px] sm:text-[16px] text-[#1F2937] w-[203px]">
               Johannesburg
             </td>
-            <td className="font-normal text-[16px] text-[#1F2937] w-[203px]">
+            <td className="font-normal text-[14px] sm:text-[16px] text-[#1F2937] w-[203px]">
               23rd, March 2024
             </td>
           </tr>

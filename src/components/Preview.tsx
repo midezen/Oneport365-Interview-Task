@@ -1,6 +1,6 @@
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { PreviewContextType } from "../models";
 import { PreviewContext } from "../context/previewModalContext";
 import logo from "../img/logo.png";
@@ -17,67 +17,82 @@ import { Link } from "react-router-dom";
 
 const Preview = () => {
   const { handlePreviewClose } = useContext<PreviewContextType>(PreviewContext);
+
+  const [show, setShow] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (window.scrollY > 76) {
+      setShow(true);
+    } else {
+      setShow(false);
+    }
+  }, [window]);
+
   const handleDownload = () => {
     downloadPdf("preview", "preview.pdf");
   };
   return (
     <div id="preview" className="flex flex-col">
       <div
-        id="previewTop"
-        className="h-[76px] bg-[#E9E9E933] w-full flex justify-between items-center"
+        id="previewTopContainer"
+        className={`w-full ${
+          show ? "bg-[#E9E9E9]" : "bg-[#E9E9E933]"
+        } sticky top-0 z-20`}
       >
         <div
-          id="title"
-          className="mt-[18px] ml-[24px] p-[8px] flex items-center gap-[8px]"
+          id="previewTop"
+          className="h-[76px]  w-[90%] m-auto flex justify-between items-center"
         >
-          <span className="text-[20px] font-medium text-[#1F2937]">
-            Quote Detail
-          </span>
-          <span className="text-[20px] font-normal text-[#6B7280]">
-            #34920_fe2
-          </span>
-        </div>
-        <div
-          id="icons"
-          className="mr-[48px] flex items-center gap-[12px] mt-[18px]"
-        >
-          <Link to="/" onClick={handlePreviewClose}>
-            <span className="cursor-pointer rounded-[24px] text-[12px] px-[16px] py-[8px] flex items-center justify-center bg-[#296FD8] font-medium text-[#FFFFFF]">
-              Save Quote
+          <div
+            id="title"
+            className="mt-[18px] flex flex-col sm:flex-row items-center gap-[8px]"
+          >
+            <span className="text-[18px] sm:text-[20px] font-medium text-[#1F2937] flex items-center]">
+              Quote Detail
             </span>
-          </Link>
-          <div
-            onClick={handleDownload}
-            className="cursor-pointer w-[38px] h-[36px] border-[1.5px] rounded-[8px] border-[#296FD8] px-[9px] py-[8px] flex items-center justify-center"
-          >
-            <FileDownloadOutlinedIcon
-              style={{ height: "20px", width: "20px", color: "#296FD8" }}
-            />
+            <span className="hidden sm:flex text-[20px] font-normal text-[#6B7280]">
+              #34920_fe2
+            </span>
           </div>
-          <div
-            onClick={handlePreviewClose}
-            className="cursor-pointer flex items-center justify-center w-[36px] h-[36px] p-[6px] border border-[#E5E7EB] rounded-[8px]"
-          >
-            <CloseOutlinedIcon
-              style={{ width: "24px", height: "24px", color: "#AD0013" }}
-            />
+          <div id="icons" className="flex items-center gap-[12px] mt-[18px]">
+            <Link to="/" onClick={handlePreviewClose}>
+              <span className="cursor-pointer rounded-[24px] text-[12px] px-[16px] py-[8px] flex gap-[3px] items-center justify-center bg-[#296FD8] font-medium text-[#FFFFFF]">
+                Save <span className="hidden sm:flex">Quote</span>
+              </span>
+            </Link>
+            <div
+              onClick={handleDownload}
+              className="cursor-pointer w-[38px] h-[36px] border-[1.5px] rounded-[8px] border-[#296FD8] px-[9px] py-[8px] flex items-center justify-center"
+            >
+              <FileDownloadOutlinedIcon
+                style={{ height: "20px", width: "20px", color: "#296FD8" }}
+              />
+            </div>
+            <div
+              onClick={handlePreviewClose}
+              className="cursor-pointer flex items-center justify-center w-[36px] h-[36px] p-[6px] border border-[#E5E7EB] rounded-[8px]"
+            >
+              <CloseOutlinedIcon
+                style={{ width: "24px", height: "24px", color: "#AD0013" }}
+              />
+            </div>
           </div>
         </div>
       </div>
 
       {/* PREVIEW BOTTOM */}
-      <div className="w-full mt-[20px] mb-[20px] ">
+      <div className="w-full mt-[20px] mb-[20px] z-10">
         <div
           id="previewBottom"
-          className="flex flex-col py-[20px] px-[32px] rounded-[12px] border border-[#E5E7EB] w-[90%] m-auto"
+          className="flex flex-col py-[20px] px-[20px] sm:px-[32px] rounded-[12px] border border-[#E5E7EB] w-[90%] m-auto"
         >
           <div id="logoAddress" className="flex justify-between h-[72px]">
             <img
               src={logo}
               alt="logo"
-              className="w-[200.31px] h-[72px] object-contain ml-[-20px]"
+              className="w-[170px] h-[50px] sm:w-[200.31px] sm:h-[72px] object-contain ml-[-20px]"
             />
-            <div className="flex flex-col font-normal text-[16px] text-[#6B7280] text-right">
+            <div className="flex flex-col font-normal text-[14px] sm:text-[16px] text-[#6B7280] text-right">
               <span>UAC Building Marina</span>
               <span>Lagos, Nigeria</span>
               <span>100223</span>
@@ -96,7 +111,7 @@ const Preview = () => {
 
             <div
               id="detailsBottom"
-              className="flex justify-between items-center mt-[20px] mb-[30px]"
+              className="flex justify-between mt-[20px] mb-[30px]"
             >
               <div
                 id="left"
@@ -105,14 +120,14 @@ const Preview = () => {
                 <span className="text-[12px] text-[#9CA3AF]">
                   Collection Address
                 </span>
-                <p className="text-[16px] text-[#1F2937]">
+                <p className="text-[14px] sm:text-[16px] text-[#1F2937]">
                   INNIO Waukesha gas Engines 8123 116th Street, Suite 300, SW
                   Side of Building, Dock 46-50, Pleasant Plairie, WI 53158
                 </p>
               </div>
-              <div id="right">
-                <span className="text-[12px] text-[#9CA3AF]">
-                  Delivery Destination
+              <div id="right" className="flex flex-col gap-[8px]">
+                <span className="text-[12px] text-[#9CA3AF] flex items-center gap-[3px]">
+                  Delivery <span className="hidden sm:flex">Destination</span>
                 </span>
                 <p className="text-[16px] text-[#1F2937] text-right">TPG PH</p>
               </div>
@@ -146,9 +161,14 @@ const Preview = () => {
             className="flex gap-[10px] mt-[32px] bg-[#1b5c2b] px-[20px] py-[10px] rounded-[8px] w-full"
           >
             <InfoOutlinedIcon
-              style={{ color: "#FFFFFF", width: "20px", height: "20px" }}
+              style={{
+                color: "#FFFFFF",
+                width: "20px",
+                height: "20px",
+                marginTop: "3px",
+              }}
             />
-            <p className="text-[#FFFFFF] text-[14px]">
+            <p className="text-[#FFFFFF] text-[12.5px] sm:text-[14px]">
               Please note this offer is firm for acceptance within 48hours,
               otherwise above offer will be considered as invalid. Rates advised
               is subject to prevailing parallel market rate at time of invoice.

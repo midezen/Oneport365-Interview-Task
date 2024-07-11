@@ -27,7 +27,7 @@ const CurrencyCard = ({ data }: Prop) => {
   return (
     <div
       id="container_bodySectionRight"
-      className="w-[25%] h-[243px] border border-[#E5E7EB] rounded-[12px] py-[20px] px-[20px]"
+      className="md:w-[25%] w-full h-[243px] border border-[#E5E7EB] rounded-[12px] py-[20px] px-[20px]"
     >
       <div
         id="container_bodySectionRightTop"
@@ -51,7 +51,7 @@ const CurrencyCard = ({ data }: Prop) => {
           Currency & Rate
         </span>
         <div className="flex items-center gap-[3px] mt-[10px]">
-          <div className="rounded-[4px] border border-[#F3F4F6] py-[13px] px-[16px] w-[66px] h-[41px] flex items-center justify-center">
+          <div className="flex-1 xl:flex-none rounded-[4px] border border-[#F3F4F6] py-[13px] px-[16px] md:w-[66px] h-[41px] flex items-center justify-center">
             <img
               src={data.currency === "NGN" ? nigerianFlag : usaFlag}
               alt="usaFlag"
@@ -61,13 +61,14 @@ const CurrencyCard = ({ data }: Prop) => {
 
           <SyncAltIcon
             style={{
-              width: "20px",
+              // width: "20px",
               height: "20px",
               color: "#9CA3AF",
             }}
+            className="flex-1 md:w-[20px] xl:flex-none"
           />
 
-          <div className="rounded-[4px] border border-[#F3F4F6] py-[12px] px-[16px] w-[165px] h-[41px] flex items-center gap-[8px]">
+          <div className="flex-1 rounded-[4px] border xl:flex-none border-[#F3F4F6] py-[12px] px-[16px] md:w-[165px] h-[41px] flex items-center gap-[8px] justify-center md:justify-start">
             <img
               src={data.currency === "NGN" ? nigerianFlag : usaFlag}
               alt="nigerianFlag"
@@ -91,7 +92,11 @@ const CurrencyCard = ({ data }: Prop) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style} style={{ width: "30%", borderRadius: "10px" }}>
+        <Box
+          sx={style}
+          style={{ borderRadius: "10px" }}
+          className="w-[85%] sm:w-[50%] md:w-[40%] lg:w-[40%] xl:w-[30%] h-[90%] overflow-y-auto"
+        >
           <EditCurrency handleClose={handleClose} data={data} />
         </Box>
       </Modal>

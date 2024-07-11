@@ -45,7 +45,7 @@ const Home: React.FC = () => {
   }, [dispatch]);
 
   return (
-    <div id="home" className="relative">
+    <div id="home" className="relative overflow-hidden">
       <div id="top" className="h-[79px] flex justify-between p-[40px]">
         <div id="existing" className="flex flex-col gap-[2px]">
           <span className="text-[24px] text-[#1F2937] font-semibold">
@@ -69,13 +69,15 @@ const Home: React.FC = () => {
         </div>
       </div>
 
-      <div onClick={() => setToggle(!toggle)}>
-        <Calender />
+      <div>
+        <Calender toggle={toggle} setToggle={setToggle} />
       </div>
 
       <div
         id="addContainer"
-        className="p-[20px] flex flex-col gap-[16px] absolute w-[300px] h-[781px] shadow-[-4px_4px_27px_-3px_rgba(21,36,26,0.46)] bg-[#1F2937] right-0 top-[111px]"
+        className={`p-[20px] flex flex-col gap-[16px] absolute w-[300px] h-[643px] shadow-[-4px_4px_27px_-3px_rgba(21,36,26,0.46)] bg-[#1F2937] ${
+          toggle ? "right-0" : "right-[-400px]"
+        } transition-all ease-in duration-[0.4s] top-[111px]`}
       >
         <div id="addTop" className="flex justify-between text-[13px]">
           <span className="text-[#3B82F6] font-bold">TODAY 2/5/2024</span>
@@ -111,7 +113,7 @@ const Home: React.FC = () => {
 
         <button
           onClick={handleOpen}
-          className="flex items-center bg-[#FFFFFF] justify-center text-[11px] font-medium h-[36px] rounded-[10px] gap-[2px]"
+          className="mb-[20px] flex items-center bg-[#FFFFFF]  justify-center text-[11px] font-medium h-[36px] rounded-[10px] gap-[2px]"
         >
           <AddOutlinedIcon
             style={{ width: "20px", height: "20px", color: "#1F2937" }}
@@ -138,11 +140,9 @@ const Home: React.FC = () => {
         <Box
           sx={style}
           style={{
-            width: "80%",
-            height: "90%",
-            borderRadius: "10px",
             overflowY: "scroll",
           }}
+          className="w-[100%] h-[100%] border-none rounded-none sm:w-[80%] sm:h-[90%] sm:rounded-[10px]"
         >
           <Preview />
         </Box>

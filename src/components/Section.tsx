@@ -9,7 +9,7 @@ interface Props {
 
 const Section = ({ data, setAddNewSection, quoteDetails }: Props) => {
   return (
-    <div id="section" className="w-[75%]">
+    <div id="section" className="md:w-[75%] w-full overflow-x-auto">
       <div
         id="sectionTop"
         className="w-full h-[48px] py-[8px] px-[16px] bg-[#F9FAFB] flex items-center gap-[10px]"

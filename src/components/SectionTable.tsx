@@ -18,26 +18,31 @@ const SectionTable = ({ data, setAddNewSection, remove }: Props) => {
     location.state ? location.state : false
   );
 
+  const handleRemove = () => {
+    setAddNewBasis(false);
+    setAddNewSection(false);
+  };
+
   return (
     <div className="flex flex-col">
       <div
         id="label"
-        className="w-full h-[47px] flex items-center border border-[#E6E7EC] justify-between"
+        className="w-full py-[16px] pr-[16px] h-[47px] flex items-center border border-[#E6E7EC] justify-between"
       >
         {!addNewBasis && (
-          <span className="h-[47px] p-[16px] border border-[#139C33] text-[#9CA3AF] w-[143px] text-[12px] font-normal flex items-center justify-center">
+          <span className="h-[47px] border border-[#139C33] text-[#9CA3AF] w-[143px] text-[12px] font-normal flex items-center justify-center">
             Enter Section Label
           </span>
         )}
         {addNewBasis && (
-          <span className="w-[200px] h-[47px] p-[16px] font-normal text-[12px] text-[#374151] flex items-center">
+          <span className="w-[200px] h-[47px] pl-[16px]  font-normal text-[12px] text-[#374151] flex items-center">
             {data.section_name}
           </span>
         )}
         {remove && (
           <span
             className="text-[12px] text-[#C70024] cursor-pointer pr-[20px]"
-            onClick={() => setAddNewSection(false)}
+            onClick={handleRemove}
           >
             Remove Section
           </span>
@@ -45,33 +50,27 @@ const SectionTable = ({ data, setAddNewSection, remove }: Props) => {
       </div>
       <table className="w-full flex flex-col border border-[#E6E7EC] border-b-none">
         {/* TABLE HEAD */}
-        <thead className="h-[49px] bg-[#F9FAFB] text-[12px] text-[#6B7280] font-normal w-full border-b border-b-[#E6E7EC]">
-          <tr className="flex w-full items-center">
-            <th className="w-[206px] h-[48px] flex items-center p-[16px] justify-between">
+        <thead className="bg-[#F9FAFB] text-[12px] text-[#6B7280] font-normal w-full border-b border-b-[#E6E7EC] flex items-center">
+          <tr className="flex w-full items-center h-[49px] ">
+            <th className=" w-[206px] border-r  flex items-center px-[16px] ">
               Basis
-              <span className="h-[20px] w-[1px] bg-[#E6E7EC]"></span>
             </th>
-            <th className="w-[134px] h-[48px] flex items-center p-[16px] justify-between">
+            <th className=" w-[134px] border-r flex items-center justify-between px-[16px]">
               Unit of measure
-              <span className="h-[20px] w-[1px] bg-[#E6E7EC]"></span>
+              <span></span>
             </th>
-            <th className="w-[96px] flex items-center p-[16px] justify-between">
-              Unit<span className="h-[20px] w-[1px] bg-[#E6E7EC]"></span>
+            <th className=" w-[96px] border-r flex items-center px-[16px]">
+              Unit
             </th>
-            <th className="w-[96px] h-[48px] flex items-center p-[16px] justify-center gap-[20px]">
+            <th className=" w-[112px] border-r  flex items-center px-[16px]  gap-[7px] justify-between lg:gap-[20px]">
               Rate
               <div className="flex gap-[10px] items-center">
-                <span className="bg-[#E5E7EB] rounded-[4px] py-[4px] px-[8px]">
-                  USD
-                </span>
-                <span className="h-[20px] w-[1px] bg-[#E6E7EC]"></span>
+                <span className="bg-[#E5E7EB] rounded-[4px] px-[8px]">USD</span>
               </div>
             </th>
-            <th className="w-[227px] h-[48px] flex items-center p-[16px] gap-[30px]">
+            <th className=" w-[227px] flex items-center px-[16px] gap-[20px]">
               Amount{" "}
-              <span className="bg-[#E5E7EB] rounded-[4px] py-[4px] px-[8px]">
-                USD
-              </span>
+              <span className="bg-[#E5E7EB] rounded-[4px] px-[8px]">USD</span>
             </th>
           </tr>
         </thead>
@@ -79,31 +78,27 @@ const SectionTable = ({ data, setAddNewSection, remove }: Props) => {
         {/* TABLE BODY */}
 
         {!addNewBasis ? (
-          <tbody className="h-[49px] text-[12px] text-[#6B7280] font-normal w-full">
-            <tr className="flex w-full items-center border-b border-b-[#E6E7EC]">
-              <td className="w-[206px] h-[48px] flex items-center p-[16px] justify-between">
+          <tbody className="text-[12px] text-[#6B7280] font-normal w-full">
+            <tr className="h-[49px] flex w-full items-center border-b border-b-[#E6E7EC]">
+              <td className="w-[206px] border-r flex items-center px-[16px]">
                 <span className="text-[#9CA3AF]">Enter Basis</span>
-                <span className="h-[20px] w-[1px] bg-[#E6E7EC]"></span>
               </td>
-              <td className="w-[134px] h-[48px] flex items-center p-[16px] justify-between text-[#6B7280]">
+              <td className="w-[134px] border-r flex items-center px-[16px] justify-between text-[#6B7280]">
                 Per Kilogram
                 <div className="flex gap-[10px] items-center">
                   <KeyboardArrowDownIcon
                     style={{ fontSize: "12px", color: "#6B7280" }}
                   />
-                  <span className="h-[20px] w-[1px] bg-[#E6E7EC]"></span>
                 </div>
               </td>
-              <td className="w-[96px] flex items-center p-[16px] justify-between">
+              <td className="w-[96px] border-r flex items-center px-[16px] justify-between">
                 Enter unit{" "}
-                <span className="h-[20px] w-[1px] bg-[#E6E7EC]"></span>
               </td>
-              <td className="w-[112px] h-[48px] flex items-center p-[16px] justify-between">
+              <td className="w-[112px] border-r flex items-center px-[16px] justify-between">
                 Enter rate
-                <span className="h-[20px] w-[1px] bg-[#E6E7EC]"></span>
               </td>
-              <td className="h-[48px] flex items-center p-[16px] gap-[30px] justify-between flex-1">
-                <span className="w-[28%] flex justify-center">Amount</span>
+              <td className=" flex items-center px-[16px] gap-[30px] justify-between flex-1">
+                <span className="">Amount</span>
                 <DeleteOutlineOutlinedIcon
                   style={{
                     color: "#E11435",
@@ -119,35 +114,29 @@ const SectionTable = ({ data, setAddNewSection, remove }: Props) => {
           data.section_data.map((sectionData) => {
             return (
               <tbody
-                className="h-[49px] text-[12px] text-[#6B7280] font-normal w-full"
+                className="text-[12px] text-[#6B7280] font-normal w-full"
                 key={data._id}
               >
-                <tr className="flex w-full items-center border-b border-b-[#E6E7EC]">
-                  <td className="w-[206px] h-[48px] flex items-center p-[16px] justify-between">
+                <tr className="h-[49px] flex w-full items-center border-b border-b-[#E6E7EC]">
+                  <td className="w-[206px] border-r  flex items-center px-[16px]">
                     <span className="">{sectionData.basis}</span>
-                    <span className="h-[20px] w-[1px] bg-[#E6E7EC]"></span>
                   </td>
-                  <td className="w-[134px] h-[48px] flex items-center p-[16px] justify-between text-[#6B7280]">
+                  <td className="w-[134px] border-r flex items-center px-[16px] justify-between text-[#6B7280]">
                     {sectionData.unit_of_measurement}
                     <div className="flex gap-[10px] items-center">
                       <KeyboardArrowDownIcon
                         style={{ fontSize: "12px", color: "#6B7280" }}
                       />
-                      <span className="h-[20px] w-[1px] bg-[#E6E7EC]"></span>
                     </div>
                   </td>
-                  <td className="w-[96px] flex items-center p-[16px] justify-between">
+                  <td className="w-[96px] border-r flex items-center px-[16px] justify-between">
                     {sectionData.unit}
-                    <span className="h-[20px] w-[1px] bg-[#E6E7EC]"></span>
                   </td>
-                  <td className="w-[112px] h-[48px] flex items-center p-[16px] justify-between">
+                  <td className="w-[112px] border-r flex items-center px-[16px] justify-between">
                     {sectionData.rate}
-                    <span className="h-[20px] w-[1px] bg-[#E6E7EC]"></span>
                   </td>
-                  <td className="h-[48px] flex items-center p-[16px] gap-[30px] justify-between flex-1">
-                    <span className="w-[28%] flex justify-center">
-                      {sectionData.amount}
-                    </span>
+                  <td className=" flex items-center px-[16px] gap-[30px] justify-between flex-1">
+                    <span className="">{sectionData.amount}</span>
                     <DeleteOutlineOutlinedIcon
                       style={{
                         color: "#E11435",
