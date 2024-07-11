@@ -10,7 +10,7 @@ const Calender = ({ setToggle, toggle }: Prop) => {
   ];
   return (
     <div className="h-[643px] border-t border-l  rounded-[8px] relative mx-[40px] mt-[32px]">
-      <div className="grid grid-cols-7 text-[16px] leading-6 text-center text-gray-500 border-b">
+      <div className="grid grid-cols-7 max-[370px]:text-[14px] text-[16px] leading-6 text-center text-gray-500 border-b">
         <div className="border-r py-[10px]">SUN</div>
         <div className="border-r py-[10px]">MON</div>
         <div className="border-r py-[10px]">TUE</div>

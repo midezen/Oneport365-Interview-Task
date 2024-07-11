@@ -48,14 +48,17 @@ const Home: React.FC = () => {
     <div id="home" className="relative overflow-hidden">
       <div id="top" className="h-[79px] flex justify-between p-[40px]">
         <div id="existing" className="flex flex-col gap-[2px]">
-          <span className="text-[24px] text-[#1F2937] font-semibold">
-            All Existing Quotes
+          <span className="max-[370px]:text-[20px] text-[24px] text-[#1F2937] font-semibold">
+            All <span className="max-[470px]:hidden">Existing</span> Quotes
           </span>
           <span className="text-[12px] text-[#6B7280]">
-            View all created quotes
+            View all <span className="max-[470px]:hidden">created</span> quotes
           </span>
         </div>
-        <div id="may" className="text-[24px] flex gap-[8px] font-medium">
+        <div
+          id="may"
+          className="max-[370px]:text-[20px] text-[24px] flex gap-[8px] font-medium"
+        >
           <span className=" text-[#1F2937]">May</span>
           <span className="text-[#00861E]">2024</span>
           <div id="icons">
@@ -76,7 +79,7 @@ const Home: React.FC = () => {
       <div
         id="addContainer"
         className={`p-[20px] flex flex-col gap-[16px] absolute w-[300px] h-[643px] shadow-[-4px_4px_27px_-3px_rgba(21,36,26,0.46)] bg-[#1F2937] ${
-          toggle ? "right-0" : "right-[-400px]"
+          toggle ? "right-0" : "right-[-300px]"
         } transition-all ease-in duration-[0.4s] top-[111px]`}
       >
         <div id="addTop" className="flex justify-between text-[13px]">
