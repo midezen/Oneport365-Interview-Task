@@ -53,9 +53,6 @@ const Home: React.FC = () => {
     end: endOfMonth(firstDayCurrentMonth),
   });
 
-  console.log(days);
-  console.log(selectedDay);
-
   const previousMonth = () => {
     let firstDayNextMonth = add(firstDayCurrentMonth, { months: -1 });
     setCurrentMonth(format(firstDayNextMonth, "MMM-yyyy"));
@@ -88,7 +85,7 @@ const Home: React.FC = () => {
     <div id="home" className="relative overflow-hidden">
       <div id="top" className="h-[79px] flex justify-between p-[40px]">
         <div id="existing" className="flex flex-col gap-[2px]">
-          <span className="sm:text-[20px] text-[24px] text-[#1F2937] font-semibold">
+          <span className="text-[17px] sm:text-[24px] text-[#1F2937] font-semibold">
             All <span className="max-[470px]:hidden">Existing</span> Quotes
           </span>
           <span className="text-[12px] text-[#6B7280]">
@@ -97,7 +94,7 @@ const Home: React.FC = () => {
         </div>
         <div
           id="may"
-          className="sm:text-[20px] text-[24px] flex gap-[8px] font-medium"
+          className="text-[17px] sm:text-[24px] flex gap-[8px] font-medium"
         >
           <span className=" text-[#1F2937]">
             {format(firstDayCurrentMonth, "MMMM")}
@@ -121,7 +118,7 @@ const Home: React.FC = () => {
       {/* CALENDER */}
 
       <div id="calender">
-        <div className="h-[643px] border-t border-l  rounded-[8px] relative mx-[40px] mt-[32px]">
+        <div className="h-[600px] sm:h-[643px] border-t border-l rounded-[8px] relative mx-[40px] mt-[32px]">
           <div className="grid grid-cols-7 max-[370px]:text-[14px] text-[16px] leading-6 text-center text-gray-500 border-b">
             <div className="border-r py-[10px]">SUN</div>
             <div className="border-r py-[10px]">MON</div>
@@ -137,7 +134,7 @@ const Home: React.FC = () => {
               return (
                 <div
                   key={dayKey}
-                  className={`border-b border-r h-[120px]  flex flex-col justify-between cursor-pointer ${
+                  className={`border-b border-r h-[70px] sm:h-[120px]  flex flex-col justify-center sm:justify-between cursor-pointer ${
                     dayKey === "3" ? "bg-[#1F2937]" : "bg-[#FFFFFF]"
                   }`}
                   onClick={() => handleClick(dayKey)}
@@ -155,7 +152,7 @@ const Home: React.FC = () => {
                     <span
                       className={`${
                         dayKey === "3" ? "text-[#F9FAFB]" : "text-[#374151]"
-                      } flex text-start text-[12px] font-medium`}
+                      } hidden sm:flex text-start text-[12px] font-medium`}
                     >
                       5 Quotes
                     </span>
@@ -163,7 +160,7 @@ const Home: React.FC = () => {
                     <span
                       className={`${
                         dayKey === "3" ? "bg-[#FFFFFF]" : "bg-[#98FF9B40]"
-                      } rounded-[4px] w-[fit-content] mb-[4px] flex text-start font-medium text-[12px] text-[#1F2937] py-[2px] px-[4px]`}
+                      } hidden sm:flex rounded-[4px] w-[fit-content] mb-[4px] text-start font-medium text-[12px] text-[#1F2937] py-[2px] px-[4px]`}
                     >
                       Total: {dayKey === "3" ? "$12,250.00" : "$23,045.00"}
                     </span>

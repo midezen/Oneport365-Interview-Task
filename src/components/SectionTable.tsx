@@ -24,7 +24,7 @@ const SectionTable = ({ data, setAddNewSection, remove }: Props) => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col overflow-x-auto">
       <div
         id="label"
         className="w-full py-[16px] pr-[16px] h-[47px] flex items-center border border-[#E6E7EC] justify-between"
@@ -41,14 +41,14 @@ const SectionTable = ({ data, setAddNewSection, remove }: Props) => {
         )}
         {remove && (
           <span
-            className="text-[12px] text-[#C70024] cursor-pointer pr-[20px]"
+            className="text-[12px] text-[#C70024] cursor-pointer  sm:pr-[20px]"
             onClick={handleRemove}
           >
             Remove Section
           </span>
         )}
       </div>
-      <table className="w-full flex flex-col border border-[#E6E7EC] border-b-none">
+      <table className="w-full flex flex-col border border-[#E6E7EC] border-b-none overflow-x-auto">
         {/* TABLE HEAD */}
         <thead className="bg-[#F9FAFB] text-[12px] text-[#6B7280] font-normal w-full border-b border-b-[#E6E7EC] flex items-center">
           <tr className="flex w-full items-center h-[49px] ">

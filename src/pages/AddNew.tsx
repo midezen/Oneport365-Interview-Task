@@ -81,7 +81,10 @@ const AddNew: React.FC = () => {
       {/* CONTAINER BODY */}
       <div id="container_body" className="px-[25px] lg:px-[64px] w-full ">
         {/* SECTIONS */}
-        <div id="container_bodySections" className="w-full mt-[39px] ">
+        <div
+          id="container_bodySections"
+          className="w-full mt-[39px] overflow-x-auto"
+        >
           {addNewSection
             ? quoteState.singleQuoteData.sections?.map((section) => {
                 return (

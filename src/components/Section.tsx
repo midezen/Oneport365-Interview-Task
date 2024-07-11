@@ -22,7 +22,7 @@ const Section = ({ data, setAddNewSection, quoteDetails }: Props) => {
           className="rounded-[32px] py-[6px] px-[12px] border border-[#DBE3DC]"
         >
           <span className="text-[12px] text-[#007003] font-normal">
-            {quoteDetails.quote_date.toString()}
+            Sat 7th, May 2024
           </span>
         </div>
       </div>
