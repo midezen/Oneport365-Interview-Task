@@ -1,6 +1,5 @@
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
-import Calender from "../components/Calender";
 import sun from "../img/sun.png";
 import AddNewSlideIn from "../components/AddNewSlideIn";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
@@ -15,6 +14,15 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "../hooks";
 import { getAllQuoteStart, getSingleQuoteStart } from "../redux/quoteSlice";
+import {
+  add,
+  format,
+  parse,
+  startOfToday,
+  isToday,
+  eachDayOfInterval,
+  endOfMonth,
+} from "date-fns";
 
 const style = {
   position: "absolute" as "absolute",
@@ -30,6 +38,38 @@ const Home: React.FC = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [toggle, setToggle] = useState<boolean>(false);
+
+  // CALENDER DECLARATIONS
+  const today = startOfToday();
+  const [currentMonth, setCurrentMonth] = useState(format(today, "MMM-yyyy"));
+  const firstDayCurrentMonth = parse(currentMonth, "MMM-yyyy", new Date());
+  const [selectedDay, setSelectedDay] = useState<string>(" ");
+  // END OF CALENDER DECLARATIONS
+
+  //CALENDER FUNCTIONS
+
+  let days = eachDayOfInterval({
+    start: firstDayCurrentMonth,
+    end: endOfMonth(firstDayCurrentMonth),
+  });
+
+  console.log(days);
+  console.log(selectedDay);
+
+  const previousMonth = () => {
+    let firstDayNextMonth = add(firstDayCurrentMonth, { months: -1 });
+    setCurrentMonth(format(firstDayNextMonth, "MMM-yyyy"));
+  };
+
+  const nextMonth = () => {
+    let firstDayNextMonth = add(firstDayCurrentMonth, { months: 1 });
+    setCurrentMonth(format(firstDayNextMonth, "MMM-yyyy"));
+  };
+
+  const handleClick = (dayKey: any) => {
+    dayKey === "3" ? setToggle(true) : setToggle(false);
+  };
+  //END OF CALENDER FUNCTIONS
 
   const { handlePreviewOpen, previewOpen, handlePreviewClose } =
     useContext<PreviewContextType>(PreviewContext);
@@ -48,7 +88,7 @@ const Home: React.FC = () => {
     <div id="home" className="relative overflow-hidden">
       <div id="top" className="h-[79px] flex justify-between p-[40px]">
         <div id="existing" className="flex flex-col gap-[2px]">
-          <span className="max-[370px]:text-[20px] text-[24px] text-[#1F2937] font-semibold">
+          <span className="sm:text-[20px] text-[24px] text-[#1F2937] font-semibold">
             All <span className="max-[470px]:hidden">Existing</span> Quotes
           </span>
           <span className="text-[12px] text-[#6B7280]">
@@ -57,23 +97,82 @@ const Home: React.FC = () => {
         </div>
         <div
           id="may"
-          className="max-[370px]:text-[20px] text-[24px] flex gap-[8px] font-medium"
+          className="sm:text-[20px] text-[24px] flex gap-[8px] font-medium"
         >
-          <span className=" text-[#1F2937]">May</span>
-          <span className="text-[#00861E]">2024</span>
+          <span className=" text-[#1F2937]">
+            {format(firstDayCurrentMonth, "MMMM")}
+          </span>
+          <span className="text-[#00861E]">
+            {format(firstDayCurrentMonth, "yyyy")}
+          </span>
           <div id="icons">
             <KeyboardArrowLeftOutlinedIcon
               style={{ width: "24px", height: "24px", color: "#1F2937" }}
+              onClick={previousMonth}
             />
             <KeyboardArrowRightOutlinedIcon
               style={{ width: "24px", height: "24px", color: "#1F2937" }}
+              onClick={nextMonth}
             />
           </div>
         </div>
       </div>
 
-      <div>
-        <Calender toggle={toggle} setToggle={setToggle} />
+      {/* CALENDER */}
+
+      <div id="calender">
+        <div className="h-[643px] border-t border-l  rounded-[8px] relative mx-[40px] mt-[32px]">
+          <div className="grid grid-cols-7 max-[370px]:text-[14px] text-[16px] leading-6 text-center text-gray-500 border-b">
+            <div className="border-r py-[10px]">SUN</div>
+            <div className="border-r py-[10px]">MON</div>
+            <div className="border-r py-[10px]">TUE</div>
+            <div className="border-r py-[10px]">WED</div>
+            <div className="border-r py-[10px]">THUR</div>
+            <div className="border-r py-[10px]">FRI</div>
+            <div className="py-[10px] border-r">SAT</div>
+          </div>
+          <div className="grid grid-cols-7 text-[14px] text-center text-gray-500">
+            {days.map((day: any) => {
+              const dayKey = format(day, "d");
+              return (
+                <div
+                  key={dayKey}
+                  className={`border-b border-r h-[120px]  flex flex-col justify-between cursor-pointer ${
+                    dayKey === "3" ? "bg-[#1F2937]" : "bg-[#FFFFFF]"
+                  }`}
+                  onClick={() => handleClick(dayKey)}
+                >
+                  <span
+                    className={`${isToday(day) && "bg-[#005BC2]"} ${
+                      isToday(day) || dayKey === "3"
+                        ? "text-[#FFFFFF]"
+                        : "text-[#969696]"
+                    }  flex justify-center items-center ml-[4px] mt-[4px] font-medium  text-[16px] w-[27px] h-[27px] rounded-[8px]`}
+                  >
+                    {format(day, "d")}
+                  </span>
+                  <div id="items" className="flex flex-col ml-[12px] gap-[8px]">
+                    <span
+                      className={`${
+                        dayKey === "3" ? "text-[#F9FAFB]" : "text-[#374151]"
+                      } flex text-start text-[12px] font-medium`}
+                    >
+                      5 Quotes
+                    </span>
+
+                    <span
+                      className={`${
+                        dayKey === "3" ? "bg-[#FFFFFF]" : "bg-[#98FF9B40]"
+                      } rounded-[4px] w-[fit-content] mb-[4px] flex text-start font-medium text-[12px] text-[#1F2937] py-[2px] px-[4px]`}
+                    >
+                      Total: {dayKey === "3" ? "$12,250.00" : "$23,045.00"}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
 
       <div
@@ -155,3 +254,5 @@ const Home: React.FC = () => {
 };
 
 export default Home;
+
+// https://stackblitz.com/edit/github-8odxmp?file=pages%2Findex.jsx
