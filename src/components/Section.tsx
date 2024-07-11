@@ -7,7 +7,7 @@ interface Props {
   quoteDetails: Quote;
 }
 
-const Section = ({ data, setAddNewSection, quoteDetails }: Props) => {
+const Section = ({ data, setAddNewSection }: Props) => {
   return (
     <div id="section" className="md:w-[75%] w-full overflow-x-auto">
       <div

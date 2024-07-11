@@ -43,7 +43,6 @@ const Home: React.FC = () => {
   const today = startOfToday();
   const [currentMonth, setCurrentMonth] = useState(format(today, "MMM-yyyy"));
   const firstDayCurrentMonth = parse(currentMonth, "MMM-yyyy", new Date());
-  const [selectedDay, setSelectedDay] = useState<string>(" ");
   // END OF CALENDER DECLARATIONS
 
   //CALENDER FUNCTIONS
